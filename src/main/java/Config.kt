@@ -1,0 +1,16 @@
+object Config {
+    const val PREDHOST_IP="localhost"
+    const val PREDHOST_PORT=82
+    const val TESTS_TERMINAL_1="11399991"
+
+    const val CARD1_PAN="1000011200000011"
+    const val CARD1_TRACK2="1000011200000011=44121011607200000572"
+    const val CARD_EXPDATE="4412"
+
+    const val CARD2_PAN="1000011100000020"
+    const val CARD2_TRACK2="1000011100000020=44121011483300000867"
+
+
+
+
+}
