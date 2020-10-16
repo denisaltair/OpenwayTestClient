@@ -4,12 +4,14 @@ package entities
 
 
 import com.google.gson.Gson
+import enums.FunctionalCode
+import enums.OpenwayResponseCode
 import kz.multibank.cardposclient.entities.Currency
 import kz.multibank.cardposclient.entities.EntryMode
 import java.math.BigDecimal
 import java.util.*
 
-class TransMessage {
+class  TransMessage {
     var guid:String=""
     lateinit var mti:String
     lateinit var processCode:String //F3
@@ -26,12 +28,14 @@ class TransMessage {
     var track2:String?=null //F35
     var rrn:String?=null //F37
     var authCode:String?=null //F38
-    var openwayResponseCode:OpenwayResponseCode?=null //F39
+    var openwayResponseCode: OpenwayResponseCode?=null //F39
     var tid:String?=null  //F41
     var currency:Currency?=null  //F49
+    var pinBlockData:ByteArray?=null  //F52
     var advice:String?=null  //F60
     var reservedPrivate:String?=null //F63
-    var mac:ByteArray?=null //F64
+    var  mac:ByteArray?=null //F64
+    var parentGuid:String?=null //F65
 
 
 

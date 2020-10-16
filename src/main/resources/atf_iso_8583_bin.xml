@@ -370,4 +370,9 @@
           length="4"
           name="MESSAGE AUTHENTICATION CODE FIELD"
           class="org.jpos.iso.IFB_BINARY"/>
+  <isofield
+          id="65"
+          length="15"
+          name="PARENT GUID"
+          class="org.jpos.iso.IF_CHAR"/>
 </isopackager>

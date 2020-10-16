@@ -2,8 +2,8 @@ package helpers
 
 
 
-import entities.FunctionalCode
-import entities.OpenwayResponseCode
+import enums.FunctionalCode
+import enums.OpenwayResponseCode
 import entities.TransMessage
 import kz.multibank.cardposclient.entities.Currency
 import kz.multibank.cardposclient.entities.EntryMode
@@ -44,6 +44,7 @@ object TransMessageHelper {
                 60 -> transMessage.advice = String(isoMessage.getBytes(field))
                 63 -> transMessage.reservedPrivate = String(isoMessage.getBytes(field))
                 64 -> transMessage.mac = isoMessage.getBytes(64)
+                65 -> transMessage.parentGuid = isoMessage.getString(65)
                 else -> throw TransMessageException(TransMessageException.ErrorCode.UNKNOWN_FIELD, "Unknown field $field")
             }
         }
@@ -75,10 +76,12 @@ object TransMessageHelper {
         if (transMessage.authCode != null) isoMsg.set(38, transMessage.authCode!!)
         if (transMessage.openwayResponseCode != null) isoMsg.set(39, transMessage.openwayResponseCode!!.code)
         if (transMessage.tid != null) isoMsg.set(41, transMessage.tid!!)
-        if (transMessage.entryMode != null) isoMsg.set(49, transMessage.currency!!.code)
+        if (transMessage.currency != null) isoMsg.set(49, transMessage.currency!!.code)
+        if (transMessage.pinBlockData != null) isoMsg.set(52, transMessage.pinBlockData)
         if (transMessage.advice != null) isoMsg.set(60, transMessage.advice!!)
         if (transMessage.reservedPrivate != null) isoMsg.set(63, transMessage.reservedPrivate!!)
         if (transMessage.mac != null) isoMsg.set(64, transMessage.mac!!)
+        if (transMessage.parentGuid != null) isoMsg.set(65, transMessage.parentGuid!!)
         isoMsg.set(42, transMessage.guid)
         return isoMsg
     }

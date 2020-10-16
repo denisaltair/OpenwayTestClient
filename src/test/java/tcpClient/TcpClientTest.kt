@@ -8,7 +8,7 @@ import com.imohsenb.ISO8583.enums.MESSAGE_FUNCTION
 import com.imohsenb.ISO8583.enums.MESSAGE_ORIGIN
 import com.imohsenb.ISO8583.interfaces.ISOClient
 import entities.MyDate
-import entities.OpenwayResponseCode
+import enums.OpenwayResponseCode
 import junit.framework.TestCase
 import org.junit.Assert
 import org.junit.Test

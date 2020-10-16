@@ -4,13 +4,25 @@ object Config {
     const val TESTS_TERMINAL_1="11399991"
 
     const val CARD1_PAN="1000011200000011"
+    const val CARD1_PIN="6739"
     const val CARD1_TRACK2="1000011200000011=44121011607200000572"
-    const val CARD_EXPDATE="4412"
+    const val CARD1_CVV2=" 172"
+
+
+
 
     const val CARD2_PAN="1000011100000020"
+    const val CARD2_PIN="62576"
     const val CARD2_TRACK2="1000011100000020=44121011483300000867"
+    const val CARD2_CVV2=" 711"
 
+    const val CARD_EXPDATE="4412"
 
+    const val TRY_TO_REPEAT_IF_SERVER_NOT_RESPONDING=10
+    const val SLEEP_BETWEEN_REQUESTS=1
+
+    const val MAX_AMOUNT_VALUE="9999999999.99"
+    const val MIN_AMOUNT_VALUE="0.01"
 
 
 }

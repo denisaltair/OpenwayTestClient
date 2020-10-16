@@ -51,5 +51,7 @@ object Utils {
         return padded.toString()
     }
 
+    fun getGUID()=UUID.randomUUID().toString().substring(0..14)
+
 
 }

@@ -1,10 +1,12 @@
 
-import entities.OpenwayResponseCode
+import enums.OpenwayResponseCode
 import entities.TransMessage
 import junit.framework.TestCase
 import kz.multibank.cardposclient.entities.Currency
 import kz.multibank.cardposclient.entities.EntryMode
+import org.junit.Test
 import other.OpenwayUtils
+import other.Utils
 import java.math.BigDecimal
 import java.util.*
 
@@ -47,13 +49,15 @@ class OpenwayRequestsTest : TestCase() {
         assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
     }
 
-    fun automaticReversalRequest() {
+    @Test
+    fun testAutomaticReversalRequest() {
         val transMessage= TransMessage()
-        transMessage.guid="8f60bb11-dffd-4"
-        transMessage.amount= BigDecimal(101.1)
+        transMessage.guid=Utils.getGUID()
+        transMessage.parentGuid="734e4953-f0d7-4"
+        transMessage.pan=Config.CARD1_PAN
         transMessage.transmissionDate= Date()
-        val response=OpenwayRequests.authorizationRequest(transMessage)
-        println("TestAuthorization Bank Response Code:"+ bankResponseCode.toString() + " " + bankResponseCode.code )
-        assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
+        val response=OpenwayRequests.automaticReversalRequest(transMessage)
+        //println("TestAuthorization Bank Response Code:"+ bankResponseCode.toString() + " " + bankResponseCode.code )
+        //assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
     }
 }

@@ -8,7 +8,8 @@ enum class EntryMode (var openWayCode:String, var description:String){
     CHIP_PBT ("051","PIN Chip Card"),
     CHIP_SBT ("052","Signed Chip Card"),
     RFID_PBT ("071","PIN RFID Card"),
-    RFID_SBT ("072","Signed RFID Card");
+    RFID_SBT ("072","Signed RFID Card"),
+    MANUAL_SBT ("012","Manual SBT");
 
     companion object {
         fun valueOfFromOpenwayCode(openWayCode: String): EntryMode {
