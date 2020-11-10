@@ -17,7 +17,7 @@ import other.Utils
 import java.math.BigDecimal
 import java.util.*
 
-class MagneticCardTestsM1_V1 : TestCase() {
+class M1_V1_MagneticStripeFunctionalTests : TestCase() {
     //M1. PIN-Based Transactions (Terminals 1, 2)
 
     val key = Utils.hexStringToByteArray("5413926DE0296E91C7F413387064FBD0")
@@ -584,7 +584,7 @@ class MagneticCardTestsM1_V1 : TestCase() {
                 tid = Config.TESTS_TERMINAL_1,
                 parentGuid = guidM903A
             )
-            assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.FIX_ERROR)
+            assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.RECONCILE_ERROR_AUTH_NOT_FOUND)
             println("M9.03C Manual Confirmation M9.03A Repeat:" + testResult.rrn)
 
 //-----------------M9.03D------------------------------------------
@@ -636,7 +636,7 @@ class MagneticCardTestsM1_V1 : TestCase() {
                 currency = Currency.USD
             )
 
-            assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.FIX_ERROR)
+            assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.RECONCILE_ERROR_AUTH_NOT_FOUND)
             println("M9.06B Manual Confirmation M9.06A. Wrong Currency rrn:" + testResult.rrn)
 
 
@@ -711,7 +711,7 @@ class MagneticCardTestsM1_V1 : TestCase() {
             parentGuid = guid
         )
 
-        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.FIX_ERROR)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.RECONCILE_ERROR_AUTH_NOT_FOUND)
         println("M9.11B Confirmation M9.11A. Wrong Card Number rrn:" + testResult.rrn)
 
 //===================================================================
@@ -900,7 +900,7 @@ class MagneticCardTestsM1_V1 : TestCase() {
             tid = Config.TESTS_TERMINAL_1,
             parentGuid = guidM1503A
         )
-        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.FIX_ERROR)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.RECONCILE_ERROR_AUTH_NOT_FOUND)
         println("M15.03C Universal Reversal M15.03A Repeat, rrn:" + testResult.rrn)
 
 //-----------------M15.03D------------------------------------------

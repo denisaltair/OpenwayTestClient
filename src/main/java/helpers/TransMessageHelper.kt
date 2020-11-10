@@ -44,7 +44,8 @@ object TransMessageHelper {
                 60 -> transMessage.advice = String(isoMessage.getBytes(field))
                 63 -> transMessage.reservedPrivate = String(isoMessage.getBytes(field))
                 64 -> transMessage.mac = isoMessage.getBytes(64)
-                65 -> transMessage.parentGuid = isoMessage.getString(65)
+                65 -> transMessage.guid = isoMessage.getString(65)
+                66 -> transMessage.parentGuid = isoMessage.getString(66)
                 else -> throw TransMessageException(TransMessageException.ErrorCode.UNKNOWN_FIELD, "Unknown field $field")
             }
         }
@@ -81,8 +82,13 @@ object TransMessageHelper {
         if (transMessage.advice != null) isoMsg.set(60, transMessage.advice!!)
         if (transMessage.reservedPrivate != null) isoMsg.set(63, transMessage.reservedPrivate!!)
         if (transMessage.mac != null) isoMsg.set(64, transMessage.mac!!)
-        if (transMessage.parentGuid != null) isoMsg.set(65, transMessage.parentGuid!!)
-        isoMsg.set(42, transMessage.guid)
+        if (transMessage.guid != null) isoMsg.set(65, transMessage.guid!!)
+        if (transMessage.parentGuid != null) isoMsg.set(66, transMessage.parentGuid!!)
+        if (transMessage.cashBackAmount!=null) {
+            if (transMessage.reservedPrivate==null) transMessage.reservedPrivate=""
+            transMessage.reservedPrivate+="01441"+ bigDecimalToIsoAmount(transMessage.cashBackAmount!!)
+            isoMsg.set(63,transMessage.reservedPrivate)
+        }
         return isoMsg
     }
 

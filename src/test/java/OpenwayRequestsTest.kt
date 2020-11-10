@@ -19,6 +19,12 @@ class OpenwayRequestsTest : TestCase() {
         assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
     }
 
+    fun testGetCryptoKeys() {
+        val response=OpenwayRequests.getCryptoKeysRequest()
+    }
+
+
+
     fun testAuthorization() {
         val transMessage= TransMessage()
         transMessage.pan="1000011200000011"
@@ -60,4 +66,36 @@ class OpenwayRequestsTest : TestCase() {
         //println("TestAuthorization Bank Response Code:"+ bankResponseCode.toString() + " " + bankResponseCode.code )
         //assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
     }
+
+    @Test
+    fun testReconciliationRequest() {
+        val transMessage= TransMessage()
+        transMessage.guid=Utils.getGUID()
+        transMessage.transmissionDate= Date()
+        val response=OpenwayRequests.reconciliationRequest(transMessage)
+        //println("TestAuthorization Bank Response Code:"+ bankResponseCode.toString() + " " + bankResponseCode.code )
+        //assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
+    }
+
+    fun testPurchaseWithCashback() {
+        val transMessage= TransMessage()
+        transMessage.pan="1000011200000011"
+        transMessage.amount= BigDecimal(2001.63)
+        transMessage.stan="000001"
+        transMessage.transmissionDate= Date()
+        transMessage.expiredDate=OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.entryMode=EntryMode.MAGNET_SBT
+        transMessage.track2=Config.CARD1_TRACK2
+        transMessage.tid=Config.TESTS_TERMINAL_1
+        transMessage.currency=Currency.RUB
+        transMessage.cashBackAmount= BigDecimal(10)
+
+        val response=OpenwayRequests.purchaseWithCashBackRequest(transMessage)
+        val bankResponseCode= response.openwayResponseCode?: OpenwayResponseCode.UNKNOWN_CODE
+        println("TestAuthorization Bank Response Code:"+ bankResponseCode.toString() + " " + bankResponseCode.code )
+        assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
+    }
+
+
+
 }

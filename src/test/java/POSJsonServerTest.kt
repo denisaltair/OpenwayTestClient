@@ -2,6 +2,7 @@ import junit.framework.TestCase
 import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
+import other.Utils
 import java.io.*
 import java.net.Socket
 
@@ -9,25 +10,17 @@ class TcpClientTest : TestCase() {
     @Test
     fun testJson() {
         try {
-            val socket=Socket("192.168.1.105",1025)
+            val socket=Socket(Config.POS_N5_IP,Config.POS_N5_JSON_SERVER_PORT)
             val output: OutputStream = socket.getOutputStream()
             val writer = PrintWriter(output, true)
 
             val input: InputStream = socket.getInputStream()
             val reader = BufferedReader(InputStreamReader(input))
             val jsonRequest=JSONObject()
-            jsonRequest.put("currencyCode","0398")
+            jsonRequest.put("guid", Utils.getGUID())
             jsonRequest.put("amount","10.01")
-            jsonRequest.put("mti","200")
-            jsonRequest.put("processCode","000000")
-            jsonRequest.put("tid","PM711117")
-            jsonRequest.put("cardNumber","123242342342")
-            jsonRequest.put("testDescription","fsfdsfsd")
-            jsonRequest.put("operationId","123")
-            jsonRequest.put("pinCode","1234")
-            jsonRequest.put("entryMode","072")
-
-
+            jsonRequest.put("operationType","PURCHASE")
+            jsonRequest.put("description","test purchase")
 
             writer.println(jsonRequest.toString())
             val text = reader.readLine()

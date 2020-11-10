@@ -7,15 +7,24 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 object OpenwayRequests {
+    var outputClient=OutputClient()
+
     fun checkConnect(tid:String=Config.TESTS_TERMINAL_1, stan:String="000001"):TransMessage {
         val transMessage=TransMessage()
         transMessage.mti="800"
         transMessage.processCode="930000"
         transMessage.transmissionDate=Date()
-        transMessage.stan=stan
         transMessage.tid=tid
-        val server=OpenwayGateway()
-        return  server.send(transMessage)
+        return outputClient.send(transMessage)
+    }
+
+    fun getCryptoKeysRequest(tid:String=Config.TESTS_TERMINAL_1, stan:String="000001"):TransMessage {
+        val transMessage=TransMessage()
+        transMessage.mti="800"
+        transMessage.processCode="960000"
+        transMessage.transmissionDate=Date()
+        transMessage.tid=tid
+        return sendRequest(transMessage)
     }
 
     fun authorizationRequest(_transMessage: TransMessage, isRepeat:Boolean=false):TransMessage {
@@ -29,23 +38,21 @@ object OpenwayRequests {
     }
 
     fun sendRequest(transMessage: TransMessage):TransMessage {
-        var server=OpenwayGateway()
-
         TimeUnit.SECONDS.sleep(Config.SLEEP_BETWEEN_REQUESTS.toLong())
-        var responseTransMessage=server.send(transMessage)
-        server.close()
+        var responseTransMessage=outputClient.send(transMessage)
+        outputClient.close()
 
         if (responseTransMessage.openwayResponseCode!= OpenwayResponseCode.SERVER_NOT_RESPONDING) return responseTransMessage
 
         val mti=transMessage.mti.substring(0..1)+'1'
-        var i=Config.TRY_TO_REPEAT_IF_SERVER_NOT_RESPONDING
+        var i=Config.tryToRepeatIfServerNotResponding
         do {
             println("Server not responding, trying to repeat...")
             TimeUnit.SECONDS.sleep(Config.SLEEP_BETWEEN_REQUESTS.toLong())
-            server=OpenwayGateway()
+            outputClient=OutputClient()
             transMessage.mti=mti
-            responseTransMessage=server.send(transMessage)
-            server.close()
+            responseTransMessage=outputClient.send(transMessage)
+            outputClient.close()
             i--
         } while (responseTransMessage.openwayResponseCode== OpenwayResponseCode.SERVER_NOT_RESPONDING && i!=0)
         return responseTransMessage
@@ -57,7 +64,14 @@ object OpenwayRequests {
         transMessage.mti=if(!isRepeat) "200" else "201"
         transMessage.processCode="000000"
         transMessage.posConditionalCode="00"
-        val server=OpenwayGateway()
+        return sendRequest(transMessage)
+    }
+
+    fun purchaseWithCashBackRequest(_transMessage: TransMessage, isRepeat:Boolean=false):TransMessage {
+        val transMessage=_transMessage.clone()
+        transMessage.mti=if(!isRepeat) "200" else "201"
+        transMessage.processCode="090000"
+        transMessage.posConditionalCode="00"
         return sendRequest(transMessage)
     }
 
@@ -66,7 +80,6 @@ object OpenwayRequests {
         transMessage.mti=if(!isRepeat) "420" else "421"
         transMessage.processCode="000000"
         transMessage.functionalCode= FunctionalCode.FULL_AUTO_REVERSAL
-        val server=OpenwayGateway()
         return sendRequest(transMessage)
     }
 
@@ -74,7 +87,6 @@ object OpenwayRequests {
         val transMessage=_transMessage.clone()
         transMessage.mti=if(!isRepeat) "200" else "201"
         transMessage.processCode="200000"
-        val server=OpenwayGateway()
         return sendRequest(transMessage)
     }
 
@@ -82,7 +94,6 @@ object OpenwayRequests {
         val transMessage=_transMessage.clone()
         transMessage.mti=if(!isRepeat) "400" else "401"
         transMessage.processCode="000000"
-        val server=OpenwayGateway()
         return sendRequest(transMessage)
     }
 
@@ -92,7 +103,6 @@ object OpenwayRequests {
         val transMessage=_transMessage.clone()
         transMessage.mti=if(!isRepeat) "220" else "221"
         transMessage.processCode="000000"
-        val server=OpenwayGateway()
         return sendRequest(transMessage)
     }
 
@@ -100,9 +110,17 @@ object OpenwayRequests {
         val transMessage=_transMessage.clone()
         transMessage.mti=if(!isRepeat) "200" else "201"
         transMessage.processCode="250000"
-        val server=OpenwayGateway()
         return sendRequest(transMessage)
     }
+
+    fun reconciliationRequest(_transMessage: TransMessage, isRepeat:Boolean=false):TransMessage {
+        val transMessage=_transMessage.clone()
+        transMessage.mti=if(!isRepeat) "500" else "501"
+        transMessage.processCode="920000"
+        return sendRequest(transMessage)
+    }
+
+
 
 
 

@@ -372,7 +372,12 @@
           class="org.jpos.iso.IFB_BINARY"/>
   <isofield
           id="65"
-          length="15"
+          length="36"
+          name="GUID"
+          class="org.jpos.iso.IF_CHAR"/>
+  <isofield
+          id="66"
+          length="36"
           name="PARENT GUID"
           class="org.jpos.iso.IF_CHAR"/>
 </isopackager>

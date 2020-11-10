@@ -17,6 +17,7 @@ class  TransMessage {
     lateinit var processCode:String //F3
     var pan: String? = null //F2
     var amount: BigDecimal? = null //F4
+    var cashBackAmount: BigDecimal?=null
     var transmissionDate: Date? = null //F7
     var stan:String?=null //F11
     var transactionDate:Date?=null //F12 F13
@@ -36,6 +37,7 @@ class  TransMessage {
     var reservedPrivate:String?=null //F63
     var  mac:ByteArray?=null //F64
     var parentGuid:String?=null //F65
+
 
 
 

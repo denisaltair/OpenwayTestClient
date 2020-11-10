@@ -14,7 +14,7 @@ import java.net.SocketTimeoutException
 
 
 
-class OpenwayGateway(val host: String = Config.PREDHOST_IP, val port: Int = Config.PREDHOST_PORT, val soTimeout: Int = 20000) {
+class OutputClient(val host: String = Config.PREDHOST_IP, val port: Int = Config.PREDHOST_PORT, val soTimeout: Int = 20000) {
     var socket: Socket
     var inputStream: DataInputStream
     var outputStream: OutputStream

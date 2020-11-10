@@ -13,7 +13,7 @@ import java.math.BigDecimal
 import java.util.*
 import kotlin.test.assertNotEquals
 
-class MagneticCardTestsQ1_Q11 : TestCase(){
+class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
     //Q1. Incorrect MAC (Terminal 1)
     @Test
     fun testQ1() {
