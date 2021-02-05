@@ -1,4 +1,4 @@
-package OpenwayTests
+package OpenwayTests.magnetic_cards_tests
 
 import OpenwayRequests
 import enums.OpenwayResponseCode
@@ -21,16 +21,19 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         var response:TransMessage
         var openwayResponseCode: OpenwayResponseCode
 
+
+
         var guid=Utils.getGUID()
         transMessage.guid=guid
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(101.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
         transMessage.currency= Currency.RUB
+        transMessage.isWithMac=true
 
 
         //Q1.01A
@@ -52,6 +55,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.parentGuid=guid
         transMessage.pan=Config.CARD1_PAN
         transMessage.transmissionDate= Date()
+        transMessage.isWithMac=true
         response=OpenwayRequests.automaticReversalRequest(transMessage)
         openwayResponseCode= response.openwayResponseCode?: OpenwayResponseCode.UNKNOWN_CODE
         assertEquals(openwayResponseCode, OpenwayResponseCode.ACCEPTED)
@@ -64,11 +68,12 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(102.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
         transMessage.currency= Currency.USD
+        transMessage.isWithMac=true
 
         response=OpenwayRequests.purchaseRequest(transMessage)
         openwayResponseCode= response.openwayResponseCode?: OpenwayResponseCode.UNKNOWN_CODE
@@ -89,6 +94,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.parentGuid=guid
         transMessage.pan=Config.CARD2_PAN
         transMessage.transmissionDate= Date()
+        transMessage.isWithMac=true
         response=OpenwayRequests.automaticReversalRequest(transMessage)
         openwayResponseCode= response.openwayResponseCode?: OpenwayResponseCode.UNKNOWN_CODE
         assertEquals(openwayResponseCode, OpenwayResponseCode.ACCEPTED)
@@ -107,7 +113,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(201.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -146,7 +152,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(202.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -187,7 +193,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(301.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -226,7 +232,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(302.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -267,7 +273,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(401.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -288,7 +294,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(402.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -311,7 +317,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(601.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -350,7 +356,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(602.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -391,7 +397,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(701.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -412,7 +418,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(402.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -435,7 +441,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(801.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -476,7 +482,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(802.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -517,7 +523,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(901.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -558,7 +564,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(902.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -599,7 +605,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(1001.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -640,7 +646,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(1002.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -681,7 +687,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD1_PAN
         transMessage.amount= BigDecimal(1101.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -722,7 +728,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase(){
         transMessage.pan=Config.CARD2_PAN
         transMessage.amount= BigDecimal(1102.1)
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate= OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode= EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD2_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1

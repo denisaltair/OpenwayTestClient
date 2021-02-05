@@ -1,13 +1,22 @@
+import other.Utils
+
 object Config {
     const val PREDHOST_IP="localhost"
-    const val PREDHOST_PORT=82
+    const val PREDHOST_PORT=84
     const val TESTS_TERMINAL_1="11399991"
+    const val TESTS_TERMINAL_2="11399992"
+    const val TESTS_TERMINAL_3="11399993"
+    const val TESTS_TERMINAL_4="11399994"
+    const val TESTS_TERMINAL_5="11399995"
 
     const val POS_N5_IP="192.168.1.105"
     const val POS_N5_JSON_SERVER_PORT=1025
     const val POS_N5_OPENWAY_SERVER_PORT=1026
 
+    const val POS_PROXY_IP="127.0.0.1"
+    const val POS_PROXY_PORT=8081
 
+    const val pinKey= "5413926DE0296E91C7F413387064FBD0"
 
     //const val ATF_TID="PM711001"
 
@@ -31,13 +40,34 @@ object Config {
     const val CARD7_TRACK2="10000131077=44121011773000000419"
     const val CARD7_CVV2=" 116"
 
+    const val EMV_CARD3_PAN="1000023100000033"
+    const val EMV_CARD3_PIN="4959"
+    const val EMV_CARD3_TRACK2="1000023100000033=44122011003400000481"
+    const val EMV_CARD3_CVV2=" 901"
 
-    const val CARD_EXPDATE="4412"
+    const val EMV_CARD9_PAN="1000054116233573"
+    const val EMV_CARD9_PIN="2114"
+    const val EMV_CARD9_TRACK2="1000054116233573=44122211975300000489"
+    const val EMV_CARD9_CVV2=" 611"
+
+
+    const val EMV_CARD10_PAN="1000065189685200"
+    const val EMV_CARD10_PIN="3706"
+    const val EMV_CARD10_TRACK2="1000065189685200=44122011497157300005"
+    const val EMV_CARD10_CVV2=" 445"
+
+
+    const val CARD_EXPIRED_DATE="4412"
+
+
+
+
+
 
     var tryToRepeatIfServerNotResponding=10
     const val SLEEP_BETWEEN_REQUESTS=1
 
-    const val MAX_AMOUNT_VALUE="9999999999.99"
+    const val MAX_AMOUNT_VALUE="9999999.99"
     const val MIN_AMOUNT_VALUE="0.01"
 
 

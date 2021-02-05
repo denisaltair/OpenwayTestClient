@@ -2,9 +2,6 @@
 <!DOCTYPE isopackager PUBLIC
         "-//jPOS/jPOS Generic Packager DTD 1.0//EN"
         "http://jpos.org/dtd/generic-packager-1.0.dtd">
-
-<!-- ISO 8583:1987 (BINARY) field descriptions for GenericPackager -->
-
 <isopackager>
   <isofield
           id="0"
@@ -253,7 +250,7 @@
   <isofield
           id="42"
           length="15"
-          name="CARD ACCEPTOR IDENTIFICATION CODE"
+          name="GUID"
           class="org.jpos.iso.IF_CHAR"/>
   <isofield
           id="43"
@@ -380,4 +377,29 @@
           length="36"
           name="PARENT GUID"
           class="org.jpos.iso.IF_CHAR"/>
+  <isofield
+          id="67"
+          length="1"
+          name="IS_WITH_MAC"
+          class="org.jpos.iso.IF_CHAR"/>
+  <isofield
+          id="68"
+          length="1"
+          name="IS_WITH_SECURE_ISO"
+          class="org.jpos.iso.IF_CHAR"/>
+  <isofield
+          id="69"
+          length="999"
+          name="BANK_REQUEST"
+          class="org.jpos.iso.IFB_LLLCHAR"/>
+  <isofield
+          id="70"
+          length="999"
+          name="BANK_RESPONSE"
+          class="org.jpos.iso.IFB_LLLCHAR"/>
+  <isofield
+          id="71"
+          length="4000"
+          name="REPORT_DATA"
+          class="org.jpos.iso.IFB_LLLLBINARY"/>
 </isopackager>

@@ -19,6 +19,14 @@ class OpenwayRequestsTest : TestCase() {
         assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
     }
 
+    fun testCheckConnectToPosProxy() {
+        OpenwayRequests.outputClient=OutputClient(Config.POS_PROXY_IP, Config.POS_PROXY_PORT)
+        val response=OpenwayRequests.checkConnect()
+        val bankResponseCode= response.openwayResponseCode?: OpenwayResponseCode.UNKNOWN_CODE
+        println("Check connect Bank Response Code:"+ bankResponseCode.toString() + " " + bankResponseCode.code )
+        assertEquals(bankResponseCode, OpenwayResponseCode.ACCEPTED)
+    }
+
     fun testGetCryptoKeys() {
         val response=OpenwayRequests.getCryptoKeysRequest()
     }
@@ -31,7 +39,7 @@ class OpenwayRequestsTest : TestCase() {
         transMessage.amount= BigDecimal(101.1)
         transMessage.stan="000001"
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate=OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate=OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode=EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1
@@ -83,7 +91,7 @@ class OpenwayRequestsTest : TestCase() {
         transMessage.amount= BigDecimal(2001.63)
         transMessage.stan="000001"
         transMessage.transmissionDate= Date()
-        transMessage.expiredDate=OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessage.cardExpiredDate=OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessage.entryMode=EntryMode.MAGNET_SBT
         transMessage.track2=Config.CARD1_TRACK2
         transMessage.tid=Config.TESTS_TERMINAL_1

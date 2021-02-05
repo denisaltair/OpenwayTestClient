@@ -14,7 +14,7 @@ import java.math.BigDecimal
 import java.util.*
 
 
-object OpenwayTesterHelper {
+object MagneticCardsTesterHelper {
     private val key = Utils.hexStringToByteArray("5413926DE0296E91C7F413387064FBD0")
 
     private val pinBlockCard1 = OpenwayCryptoUtils.calcPinBlock(key, Config.CARD1_PIN, Config.CARD1_PAN)
@@ -73,7 +73,7 @@ object OpenwayTesterHelper {
             when (entryMode) {
                 EntryMode.MAGNET_PBT -> {
                     transMessage.track2 = track2
-                    transMessage.pinBlockData = pinBlock
+                    transMessage.pinBlock = pinBlock
                 }
                 EntryMode.MAGNET_SBT -> {
                     transMessage.track2 = track2
@@ -85,7 +85,7 @@ object OpenwayTesterHelper {
             transMessage.entryMode = entryMode
             transMessage.guid = guid
             transMessage.pan = pan
-            transMessage.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+            transMessage.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
             transMessage.tid = tid
             transMessage.currency = _currency
             transMessage.transmissionDate = Date()
@@ -104,7 +104,7 @@ object OpenwayTesterHelper {
                     transMessage.tid = null
 
                     if (currency==null) transMessage.currency = null
-                    transMessage.expiredDate = null
+                    transMessage.cardExpiredDate = null
                     OpenwayRequests.authConfirmationRequest(transMessage, isRepeat)
                 }
                 OperationType.REFUND -> {
@@ -112,7 +112,7 @@ object OpenwayTesterHelper {
                     transMessage.track2 = null
                     transMessage.tid = null
                     if (currency==null) transMessage.currency = null
-                    transMessage.expiredDate = null
+                    transMessage.cardExpiredDate = null
                     OpenwayRequests.refundRequest(transMessage, isRepeat)
                 }
 
@@ -121,7 +121,7 @@ object OpenwayTesterHelper {
                     transMessage.track2 = null
                     transMessage.tid = null
                     if (currency==null) transMessage.currency = null
-                    transMessage.expiredDate = null
+                    transMessage.cardExpiredDate = null
                     OpenwayRequests.reversalRequest(transMessage, isRepeat)
                 }
 
@@ -130,7 +130,7 @@ object OpenwayTesterHelper {
                     transMessage.track2 = null
                     transMessage.tid = null
                     if (currency==null) transMessage.currency = null
-                    transMessage.expiredDate = null
+                    transMessage.cardExpiredDate = null
                     OpenwayRequests.automaticReversalRequest(transMessage, isRepeat)
                 }
 
@@ -139,7 +139,7 @@ object OpenwayTesterHelper {
                     transMessage.track2 = null
                     transMessage.tid = null
                     if (currency==null) transMessage.currency = null
-                    transMessage.expiredDate = null
+                    transMessage.cardExpiredDate = null
                     OpenwayRequests.purchaseReturnRequest(transMessage, isRepeat)
                 }
 
@@ -154,6 +154,27 @@ object OpenwayTesterHelper {
 
         }
 
+    }
+
+    fun makeReconciliation():TestResult {
+        var transMessage = TransMessage()
+        transMessage.guid = Utils.getGUID()
+        transMessage.transmissionDate = Date()
+        transMessage.tid = Config.TESTS_TERMINAL_1
+
+        var response = OpenwayRequests.reconciliationRequest(transMessage)
+        return TestResult(response.openwayResponseCode?:OpenwayResponseCode.UNKNOWN_CODE, response.rrn?:"")
+
+    }
+
+    fun getReport(): TestResult {
+        var transMessage = TransMessage()
+        transMessage.guid = Utils.getGUID()
+        transMessage.transmissionDate = Date()
+        transMessage.tid = Config.TESTS_TERMINAL_1
+
+        var response = OpenwayRequests.getReport(transMessage)
+        return TestResult(response.openwayResponseCode?:OpenwayResponseCode.UNKNOWN_CODE, response.rrn?:"")
     }
 
 

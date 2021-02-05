@@ -1,8 +1,8 @@
 package other
 
+import entities.MyISOMsg
 import org.jpos.iso.ISOMsg
 import org.jpos.iso.packager.GenericPackager
-import other.Utils
 import java.math.BigDecimal
 import java.time.Year
 import java.util.*
@@ -10,24 +10,24 @@ import java.util.*
 
 object OpenwayUtils {
     fun getOpenwayPackager():GenericPackager {
-        val atfBinIsoXML = Thread.currentThread().contextClassLoader.getResourceAsStream("atf_iso_8583_bin.xml")
+        val atfBinIsoXML = Thread.currentThread().contextClassLoader.getResourceAsStream("openway_packager.xml")
         return GenericPackager(atfBinIsoXML)
     }
 
 
-    fun packOpenwayMessage(isoMsg: ISOMsg): ByteArray {
+    fun packOpenwayMessage(isoMsg: MyISOMsg): ByteArray {
         isoMsg.packager= getOpenwayPackager()
         return isoMsg.pack()
     }
 
-    fun unpackOpenwayMessage(message: ByteArray):ISOMsg {
-        val isoMsg=ISOMsg()
+    fun unpackOpenwayMessage(message: ByteArray): MyISOMsg {
+        val isoMsg=MyISOMsg()
         isoMsg.packager= getOpenwayPackager()
         isoMsg.unpack(message)
         return isoMsg
     }
 
-    fun unpackOpenwayMessage(hexMessage: String):ISOMsg {
+    fun unpackOpenwayMessage(hexMessage: String):MyISOMsg {
         return unpackOpenwayMessage(Utils.hexStringToByteArray(hexMessage))
     }
 

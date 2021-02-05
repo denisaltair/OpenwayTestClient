@@ -2,14 +2,15 @@ package helpers
 
 
 
-import enums.FunctionalCode
-import enums.OpenwayResponseCode
+import entities.MyISOMsg
 import entities.TransMessage
+import enums.*
 import kz.multibank.cardposclient.entities.Currency
 import kz.multibank.cardposclient.entities.EntryMode
 import kz.multibank.cardposclient.exceptions.TransMessageException
-import org.jpos.iso.ISOMsg
+import org.json.JSONObject
 import other.DateUtils
+import other.OpenwayUtils
 import other.Utils
 import java.math.BigDecimal
 import java.time.Year
@@ -18,7 +19,7 @@ import java.util.*
 
 
 object TransMessageHelper {
-    fun decodeISOMessageToTransMessage(isoMessage: ISOMsg): TransMessage {
+    fun decodeISOMessageToTransMessage(isoMessage: MyISOMsg): TransMessage {
         val transMessage = TransMessage()
 
         for (field in 2..isoMessage.maxField) {
@@ -30,8 +31,9 @@ object TransMessageHelper {
                 7 -> transMessage.transmissionDate = transmissionDateTimeToDate(isoMessage.getString(field))
                 11-> transMessage.stan = isoMessage.getString(field)
                 12, 13 -> transMessage.transactionDate = transactionDateTimeToDate(isoMessage.getString(13), isoMessage.getString(12))
-                14 -> transMessage.expiredDate = isoExpirationDateToDate(isoMessage.getString(field))
+                14 -> transMessage.cardExpiredDate = isoExpirationDateToDate(isoMessage.getString(field))
                 22 -> transMessage.entryMode = EntryMode.valueOfFromOpenwayCode(isoMessage.getString(field))
+                23-> transMessage.cardSequenceNumber=isoMessage.getString(OpenwayField.F23_PAN_SEQUENCE)
                 24 -> transMessage.functionalCode = FunctionalCode.valueOfFromOpenwayCode(isoMessage.getString(field))
                 25 -> transMessage.posConditionalCode = isoMessage.getString(field)
                 28 -> transMessage.amountTransactionFee = isoMessage.getString(field)
@@ -46,6 +48,8 @@ object TransMessageHelper {
                 64 -> transMessage.mac = isoMessage.getBytes(64)
                 65 -> transMessage.guid = isoMessage.getString(65)
                 66 -> transMessage.parentGuid = isoMessage.getString(66)
+           //     69-> transMessage.bankRequest=isoMessage.getBytes(OpenwayField.F69_BANK_REQUEST)
+                70-> transMessage.bankResponse=isoMessage.getBytes(OpenwayField.F70_BANK_RESPONSE)
                 else -> throw TransMessageException(TransMessageException.ErrorCode.UNKNOWN_FIELD, "Unknown field $field")
             }
         }
@@ -54,8 +58,8 @@ object TransMessageHelper {
         return transMessage
     }
 
-    fun encodeTransMessageToISOMessage(transMessage: TransMessage): ISOMsg {
-        val isoMsg=ISOMsg()
+    fun encodeTransMessageToISOMessage(transMessage: TransMessage): MyISOMsg {
+        val isoMsg=MyISOMsg()
         isoMsg.mti=transMessage.mti
         isoMsg.set(3, transMessage.processCode)
 
@@ -67,7 +71,7 @@ object TransMessageHelper {
             isoMsg.set(12, dateToTransactionalTime(transMessage.transactionDate!!))
             isoMsg.set(13, dateToTransactionalDate(transMessage.transactionDate!!))
         }
-        if (transMessage.expiredDate != null) isoMsg.set(14, dateToIsoExpirationDate(transMessage.expiredDate!!))
+        if (transMessage.cardExpiredDate != null) isoMsg.set(14, dateToIsoExpirationDate(transMessage.cardExpiredDate!!))
         if (transMessage.entryMode != null) isoMsg.set(22, transMessage.entryMode!!.openWayCode)
         if (transMessage.functionalCode != null) isoMsg.set(24, transMessage.functionalCode!!.openWayCode)
         if (transMessage.posConditionalCode != null) isoMsg.set(25, transMessage.posConditionalCode!!)
@@ -78,7 +82,7 @@ object TransMessageHelper {
         if (transMessage.openwayResponseCode != null) isoMsg.set(39, transMessage.openwayResponseCode!!.code)
         if (transMessage.tid != null) isoMsg.set(41, transMessage.tid!!)
         if (transMessage.currency != null) isoMsg.set(49, transMessage.currency!!.code)
-        if (transMessage.pinBlockData != null) isoMsg.set(52, transMessage.pinBlockData)
+        if (transMessage.pinBlock != null) isoMsg.set(52, transMessage.pinBlock)
         if (transMessage.advice != null) isoMsg.set(60, transMessage.advice!!)
         if (transMessage.reservedPrivate != null) isoMsg.set(63, transMessage.reservedPrivate!!)
         if (transMessage.mac != null) isoMsg.set(64, transMessage.mac!!)
@@ -89,7 +93,50 @@ object TransMessageHelper {
             transMessage.reservedPrivate+="01441"+ bigDecimalToIsoAmount(transMessage.cashBackAmount!!)
             isoMsg.set(63,transMessage.reservedPrivate)
         }
+        isoMsg.set(OpenwayField.F67_IS_WITH_MAC, if(transMessage.isWithMac) "1" else "0")
+        isoMsg.set(OpenwayField.F68_IS_WITH_SECURE_ISO, if(transMessage.isWithSecureIso) "1" else "0")
+
+
+
+
         return isoMsg
+    }
+
+    fun transMessageToJsonRequest(transMessage: TransMessage): JSONObject {
+        var result=JSONObject()
+        result.put("guid",transMessage.guid)
+        if (transMessage.operationType!=null) result.put("operationType",transMessage.operationType)
+        if (transMessage.parentGuid!=null) result.put("parentGuid",transMessage.parentGuid)
+        if (transMessage.amount!=null) result.put("amount",transMessage.amount)
+        if (transMessage.cashBackAmount!=null) result.put("cashBackAmount",transMessage.cashBackAmount)
+        if (transMessage.currency!=null) result.put("currency",transMessage.currency)
+        if (transMessage.tid!=null) result.put("tid",transMessage.tid)
+        if (transMessage.description!=null) result.put("description",transMessage.description)
+        result.put("cardHolderVerificationType", transMessage.cardHolderVerificationType)
+        result.put("cardSlotType", transMessage.cardSlotType)
+        result.put("isWithMac",transMessage.isWithMac)
+        result.put("isWithSecureIso",transMessage.isWithSecureIso)
+        result.put("isRepeat",transMessage.isRepeat)
+
+        if (transMessage.pinBlock!=null) result.put("pinBlock", Utils.bytesToHex(transMessage.pinBlock!!))
+        if (transMessage.cvv2!=null) result.put("cvv2", transMessage.cvv2)
+        if (transMessage.pan!=null) result.put("pan", transMessage.pan)
+        if (transMessage.cardExpiredDate!=null) result.put("cardExpiredDate", OpenwayUtils.dateToIsoExpirationDate(transMessage.cardExpiredDate!!))
+        if (transMessage.testNumber!=null) result.put("testNumber", transMessage.testNumber)
+        if (transMessage.bankResponse!=null) result.put("bankResponse", transMessage.bankResponse)
+        if (transMessage.pin!=null) result.put("pin", transMessage.pin)
+        if (transMessage.track2!=null) result.put("track2", transMessage.track2)
+
+
+        return result
+    }
+
+    fun jsonResponseToTransMessage(value: JSONObject): TransMessage {
+        val transMessage=TransMessage()
+        transMessage.openwayResponseCode=OpenwayResponseCode.valueOfFromCode(value.getString("rc"))
+        transMessage.authCode=if (value.has("authCode")) value.getString("authCode") else null
+        transMessage.rrn=if (value.has("rrn")) value.getString("rrn") else null
+        return transMessage
     }
 
 
@@ -121,5 +168,19 @@ object TransMessageHelper {
 
     fun isoExpirationDateToDate(value: String): Date = DateUtils.getDateFromString("20"+value, "yyyyMM")
 
+
+    fun entryModeToCardSlotType(value:String): CardSlotType {
+
+        return when (value.substring(0..1)) {
+            "90"-> CardSlotType.MAGNETIC_STRIPE
+            "05"-> CardSlotType.ICC
+            "07"-> CardSlotType.RF
+            "01"-> CardSlotType.MANUAL
+            else-> CardSlotType.ICC
+        }
+    }
+
+    fun entryModeToCardHolderVerificationType(value:String): CardHolderVerificationType =
+        if (value[2]=='1') CardHolderVerificationType.ONLINE_PIN else CardHolderVerificationType.SIGNED
 
 }

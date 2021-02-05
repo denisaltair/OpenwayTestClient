@@ -1,9 +1,9 @@
-package OpenwayTests
+package OpenwayTests.magnetic_cards_tests
 
 import entities.TestResult
 import enums.OpenwayResponseCode
 import enums.OperationType
-import helpers.OpenwayTesterHelper
+import helpers.MagneticCardsTesterHelper
 import junit.framework.TestCase
 
 import kz.multibank.cardposclient.entities.EntryMode
@@ -24,7 +24,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
         val tryToRepeatOld=Config.tryToRepeatIfServerNotResponding
         Config.tryToRepeatIfServerNotResponding=1
         guid= Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION, amount = BigDecimal(101.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1,
             guid=guid
@@ -35,7 +35,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 
 //-----------------T1.01C---------------------------------------------
         Config.tryToRepeatIfServerNotResponding=tryToRepeatOld
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTO_REVERSAL, amount = BigDecimal(101.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -55,7 +55,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
         var tryToRepeatOld=Config.tryToRepeatIfServerNotResponding
         Config.tryToRepeatIfServerNotResponding=0
         guid= Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(201.03),
             pan = Config.CARD7_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1
         )
@@ -66,7 +66,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 //-----------------T2.02A---------------------------------------------
         Config.tryToRepeatIfServerNotResponding=2
         guid= Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(202.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1,
             guid=guid
@@ -77,7 +77,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 
 //-----------------T2.02D---------------------------------------------
         Config.tryToRepeatIfServerNotResponding=tryToRepeatOld
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTO_REVERSAL, amount = BigDecimal(202.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -97,7 +97,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 //-----------------T5.01A---------------------------------------------
         val tryToRepeatOld=Config.tryToRepeatIfServerNotResponding
         guid= Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION, amount = BigDecimal(501.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1,
             guid=guid
@@ -108,7 +108,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 
 //-----------------T5.01D---------------------------------------------
         Config.tryToRepeatIfServerNotResponding=3
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION_CONFIRMATION, amount = BigDecimal(501.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -127,7 +127,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 //-----------------T7.01A---------------------------------------------
         val tryToRepeatOld=Config.tryToRepeatIfServerNotResponding
         guid= Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(701.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1,
             guid=guid
@@ -138,7 +138,7 @@ class T1_T14_MagneticStripeTimeoutTests : TestCase() {
 
 //-----------------T7.01B---------------------------------------------
         Config.tryToRepeatIfServerNotResponding=3
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(701.03),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )

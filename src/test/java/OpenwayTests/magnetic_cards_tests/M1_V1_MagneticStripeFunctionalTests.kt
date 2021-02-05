@@ -1,11 +1,11 @@
-package OpenwayTests
+package OpenwayTests.magnetic_cards_tests
 
 import OpenwayRequests
 import entities.TestResult
 import enums.OpenwayResponseCode
 import entities.TransMessage
 import enums.OperationType
-import helpers.OpenwayTesterHelper
+import helpers.MagneticCardsTesterHelper
 import junit.framework.TestCase
 
 import kz.multibank.cardposclient.entities.Currency
@@ -33,19 +33,19 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
         var transMessageCard1 = TransMessage()
         transMessageCard1.pan = Config.CARD1_PAN
-        transMessageCard1.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessageCard1.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessageCard1.entryMode = EntryMode.MAGNET_PBT
         transMessageCard1.track2 = Config.CARD1_TRACK2
-        transMessageCard1.pinBlockData = pinBlockCard1
+        transMessageCard1.pinBlock = pinBlockCard1
         transMessageCard1.tid = Config.TESTS_TERMINAL_1
         transMessageCard1.currency = Currency.RUB
 
         var transMessageCard2 = TransMessage()
         transMessageCard2.pan = Config.CARD2_PAN
-        transMessageCard2.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessageCard2.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessageCard2.entryMode = EntryMode.MAGNET_PBT
         transMessageCard2.track2 = Config.CARD2_TRACK2
-        transMessageCard2.pinBlockData = pinBlockCard2
+        transMessageCard2.pinBlock = pinBlockCard2
         transMessageCard2.tid = Config.TESTS_TERMINAL_1
         transMessageCard2.currency = Currency.USD
 
@@ -84,7 +84,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //-----------------M1.04  BAD PIN------------------------------------------
         transMessageCard2.guid = Utils.getGUID()
         transMessageCard2.amount = BigDecimal(104)
-        transMessageCard2.pinBlockData = badPinBlockCard
+        transMessageCard2.pinBlock = badPinBlockCard
         transMessageCard2.transmissionDate = Date()
 
         response = OpenwayRequests.purchaseRequest(transMessageCard2)
@@ -95,7 +95,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //-----------------M1.05  Good PIN------------------------------------------
         transMessageCard2.guid = Utils.getGUID()
         transMessageCard2.amount = BigDecimal(105)
-        transMessageCard2.pinBlockData = pinBlockCard2
+        transMessageCard2.pinBlock = pinBlockCard2
         transMessageCard2.transmissionDate = Date()
 
         response = OpenwayRequests.purchaseRequest(transMessageCard2)
@@ -154,7 +154,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
         var transMessageCard1 = TransMessage()
         transMessageCard1.pan = Config.CARD1_PAN
-        transMessageCard1.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessageCard1.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessageCard1.entryMode = EntryMode.MAGNET_SBT
         transMessageCard1.track2 = Config.CARD1_TRACK2
         transMessageCard1.tid = Config.TESTS_TERMINAL_1
@@ -162,7 +162,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
         var transMessageCard2 = TransMessage()
         transMessageCard2.pan = Config.CARD2_PAN
-        transMessageCard2.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessageCard2.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessageCard2.entryMode = EntryMode.MAGNET_SBT
         transMessageCard2.track2 = Config.CARD2_TRACK2
         transMessageCard2.tid = Config.TESTS_TERMINAL_1
@@ -212,7 +212,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
         var transMessageCard1 = TransMessage()
         transMessageCard1.pan = Config.CARD1_PAN
-        transMessageCard1.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessageCard1.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessageCard1.entryMode = EntryMode.MANUAL_SBT
         transMessageCard1.tid = Config.TESTS_TERMINAL_1
         transMessageCard1.currency = Currency.RUB
@@ -220,7 +220,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
         var transMessageCard2 = TransMessage()
         transMessageCard2.pan = Config.CARD2_PAN
-        transMessageCard2.expiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPDATE)
+        transMessageCard2.cardExpiredDate = OpenwayUtils.isoExpirationDateToDate(Config.CARD_EXPIRED_DATE)
         transMessageCard2.entryMode = EntryMode.MANUAL_SBT
         transMessageCard2.tid = Config.TESTS_TERMINAL_1
         transMessageCard2.currency = Currency.USD
@@ -299,7 +299,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------M8.01A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(801),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -307,7 +307,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M8.01A Success PBT (For terminal 1,3 only), rrn:" + testResult.rrn)
 
 //-----------------M8.01B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(801),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -316,7 +316,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------M8.02A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(802),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -324,7 +324,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M8.02A Success SBT (For terminal 1,3 only), rrn:" + testResult.rrn)
 
 //-----------------M8.02B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(802),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -335,7 +335,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===============================================================
 //----------------M8.03A
         val m803AGuid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(803),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MANUAL_SBT, tid = Config.TESTS_TERMINAL_1, guid = m803AGuid)
 
@@ -343,7 +343,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M8.03A Manual, rrn:" + testResult.rrn)
 
 //----------------M8.03B-----------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(80.3),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = m803AGuid
         )
@@ -353,7 +353,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------M8.04A------------------------------------------
         guid=Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(804),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid)
 
@@ -361,7 +361,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M8.04A PBT (For terminal 1,3 only) Success, rrn:" + testResult.rrn)
 
 //----------------M8.04B-----------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(8040),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -370,7 +370,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------M8.05A------------------------------------------
         guid=Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(805),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid)
 
@@ -378,7 +378,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M8.05A SBT (For terminal 1,3 only) Success, rrn:" + testResult.rrn)
 
 //----------------M8.05B-----------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(805),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = guid
         )
@@ -387,7 +387,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //==================================================================
 //----------------M8.03C-----------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(80.3),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = m803AGuid
         )
@@ -395,7 +395,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M8.03C Refund M8.03C, rrn:" + testResult.rrn)
 
 //----------------M8.03D-----------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REFUND, amount = BigDecimal(8030),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, parentGuid = m803AGuid
         )
@@ -423,17 +423,17 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //-----------------M9.01A------------------------------------------
 
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(901),
-                pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
+                pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
 
             assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)
             println("M9.01A Authorisation (PBT), rrn:" + testResult.rrn)
-
+            return
 
 //-----------------M9.01B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(901),
                 pan = Config.CARD2_PAN,
@@ -449,7 +449,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.02A------------------------------------------
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(902),
                 pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
@@ -459,7 +459,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------M9.02B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(90.2),
                 pan = Config.CARD2_PAN,
@@ -480,7 +480,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.03A-----------------------------------------
 
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION,
                 amount = BigDecimal(903),
                 pan = Config.CARD1_PAN,
@@ -494,7 +494,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------M9.03B------------------------------------------
 
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(903),
                 pan = Config.CARD1_PAN,
@@ -514,7 +514,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.04A-----------------------------------------
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(904),
                 pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
@@ -523,7 +523,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.04A Authorisation (PBT), rrn:" + testResult.rrn)
 
 //-----------------M9.04B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(9040),
                 pan = Config.CARD1_PAN,
@@ -536,7 +536,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.04B Manual Confirmation M9.04B, Wrong Amount rrn:" + testResult.rrn)
 
 //-----------------M9.04C------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(904),
                 pan = Config.CARD1_PAN,
@@ -552,7 +552,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.05A-----------------------------------------
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(905),
                 pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
@@ -561,7 +561,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.05A Authorisation (SBT), rrn:" + testResult.rrn)
 
 //-----------------M9.05B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(905),
                 pan = Config.CARD1_PAN,
@@ -576,7 +576,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         if (block03) {
 //==========================================================================
 //-----------------M9.03C------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(903),
                 pan = Config.CARD1_PAN,
@@ -588,7 +588,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.03C Manual Confirmation M9.03A Repeat:" + testResult.rrn)
 
 //-----------------M9.03D------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(9030),
                 pan = Config.CARD1_PAN,
@@ -600,7 +600,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             //println("M9.03D Manual Confirmation M9.03A Repeat. Wrong Amount:" + testResult.rrn)
 
 //-----------------M9.03E------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.REFUND,
                 amount = BigDecimal(902),
                 pan = Config.CARD1_PAN,
@@ -617,7 +617,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.06A-----------------------------------------
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(906),
                 pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
@@ -626,7 +626,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.06A Authorisation (PBT), rrn:" + testResult.rrn)
 
 //-----------------M9.06B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION_CONFIRMATION,
                 amount = BigDecimal(906),
                 pan = Config.CARD1_PAN,
@@ -643,7 +643,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.07A-----------------------------------------
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(907),
                 pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
@@ -652,7 +652,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.07A Authorisation (SBT), rrn:" + testResult.rrn)
 
 //-----------------M9.07B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.REVERSAL,
                 amount = BigDecimal(907),
                 pan = Config.CARD1_PAN,
@@ -668,7 +668,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.08A-----------------------------------------
             guid = Utils.getGUID()
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.AUTHORISATION, amount = BigDecimal(908),
                 pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
             )
@@ -677,7 +677,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
             println("M9.08A Authorisation (PBT), rrn:" + testResult.rrn)
 
 //-----------------M9.08B------------------------------------------
-            testResult = OpenwayTesterHelper.sendRequest(
+            testResult = MagneticCardsTesterHelper.sendRequest(
                 operationType = OperationType.REVERSAL,
                 amount = BigDecimal(90.8),
                 pan = Config.CARD2_PAN,
@@ -693,7 +693,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.11A-----------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION, amount = BigDecimal(912),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -702,7 +702,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M9.11A Authorisation (PBT), rrn:" + testResult.rrn)
 
 //-----------------M9.11B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(912),
             pan = Config.CARD1_PAN,
@@ -717,7 +717,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.12A-----------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION, amount = BigDecimal(913),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -726,7 +726,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M9.12A Authorisation (PBT), rrn:" + testResult.rrn)
 
 //-----------------M9.12B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(915),
             pan = Config.CARD1_PAN,
@@ -741,7 +741,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M9.13A-----------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION, amount = BigDecimal(914),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -750,7 +750,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M9.13A Authorisation (PBT), rrn:" + testResult.rrn)
 
 //-----------------M9.13B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(911),
             pan = Config.CARD2_PAN,
@@ -773,7 +773,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M15.01A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(1501),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -783,7 +783,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------M15.01B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(1501),
             pan = Config.CARD1_PAN,
@@ -797,7 +797,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M15.02A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(1502),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -807,7 +807,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------M15.02B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(1502),
             pan = Config.CARD2_PAN,
@@ -821,7 +821,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M15.03A------------------------------------------
         val guidM1503A = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.AUTHORISATION, amount = BigDecimal(1503),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MANUAL_SBT, tid = Config.TESTS_TERMINAL_1, guid = guidM1503A
         )
@@ -831,7 +831,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------M15.03B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(1503),
             pan = Config.CARD1_PAN,
@@ -845,7 +845,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M15.04A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(1504),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MANUAL_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -855,7 +855,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------M15.04B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(150.4),
             pan = Config.CARD1_PAN,
@@ -870,7 +870,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------M15.05A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(1505),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -880,7 +880,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------M15.05B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(15050),
             pan = Config.CARD2_PAN,
@@ -892,7 +892,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M15.05B Universal Reversal 15.05A. Wrong Amount, rrn:" + testResult.rrn)
 
 //-----------------M15.03C------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(1503),
             pan = Config.CARD1_PAN,
@@ -904,7 +904,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
         println("M15.03C Universal Reversal M15.03A Repeat, rrn:" + testResult.rrn)
 
 //-----------------M15.03D------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.REVERSAL,
             amount = BigDecimal(15030),
             pan = Config.CARD1_PAN,
@@ -926,7 +926,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 //===================================================================
 //-----------------V1.01A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(101.07),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -936,7 +936,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------V1.01B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_RETURN,
             amount = BigDecimal(101.07),
             pan = Config.CARD2_PAN,
@@ -949,7 +949,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------V1.02A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(102.07),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -959,7 +959,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------V1.02B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_RETURN,
             amount = BigDecimal(102.07),
             pan = Config.CARD2_PAN,
@@ -973,7 +973,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 //-----------------V1.03A------------------------------------------
         guid = Utils.getGUID()
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE, amount = BigDecimal(103.07),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MANUAL_SBT, tid = Config.TESTS_TERMINAL_1, guid = guid
         )
@@ -983,7 +983,7 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
 
 
 //-----------------V1.03B------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_RETURN,
             amount = BigDecimal(103.07),
             pan = Config.CARD1_PAN,

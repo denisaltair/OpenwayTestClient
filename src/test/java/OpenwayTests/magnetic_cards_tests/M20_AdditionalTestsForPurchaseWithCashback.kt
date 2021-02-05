@@ -1,10 +1,10 @@
-package OpenwayTests
+package OpenwayTests.magnetic_cards_tests
 
 import entities.TestResult
 import entities.TransMessage
 import enums.OpenwayResponseCode
 import enums.OperationType
-import helpers.OpenwayTesterHelper
+import helpers.MagneticCardsTesterHelper
 import junit.framework.TestCase
 import kz.multibank.cardposclient.entities.Currency
 
@@ -23,7 +23,7 @@ class M20_AdditionalTestsForPurchaseWithCashback : TestCase() {
         var testResult: TestResult
 //===================================================================
 //-----------------M20.01---------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_WITH_CASH_BACK, amount = BigDecimal(2001.63),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, cashBackAmount = BigDecimal(10),
             currency = Currency.USD
@@ -33,7 +33,7 @@ class M20_AdditionalTestsForPurchaseWithCashback : TestCase() {
         println("M20.01 Purchase with cashback SBT, rrn:" + testResult.rrn)
 
 //-----------------M20.02---------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_WITH_CASH_BACK, amount = BigDecimal(2002.63),
             pan = Config.CARD1_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, cashBackAmount = BigDecimal(10),
             currency = Currency.RUB
@@ -43,7 +43,7 @@ class M20_AdditionalTestsForPurchaseWithCashback : TestCase() {
         println("M20.02 Purchase with cashback PBT, rrn:" + testResult.rrn)
 
 //-----------------M20.03---------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_WITH_CASH_BACK, amount = BigDecimal(2003.63),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_PBT, tid = Config.TESTS_TERMINAL_1, cashBackAmount = BigDecimal(10),
             currency = Currency.USD
@@ -53,7 +53,7 @@ class M20_AdditionalTestsForPurchaseWithCashback : TestCase() {
         println("M20.03 Purchase with cashback PBT, rrn:" + testResult.rrn)
 
 //-----------------M20.04---------------------------------------------
-        testResult = OpenwayTesterHelper.sendRequest(
+        testResult = MagneticCardsTesterHelper.sendRequest(
             operationType = OperationType.PURCHASE_WITH_CASH_BACK, amount = BigDecimal(2004.63),
             pan = Config.CARD2_PAN, entryMode = EntryMode.MAGNET_SBT, tid = Config.TESTS_TERMINAL_1, cashBackAmount = BigDecimal(10),
             currency = Currency.RUB

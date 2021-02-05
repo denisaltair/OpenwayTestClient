@@ -2,23 +2,19 @@ import entities.TransMessage
 import helpers.TransMessageHelper
 import kz.multibank.cardposclient.exceptions.BaseException
 import kz.multibank.cardposclient.exceptions.GatewayException
-import other.OpenwayUtils
-import other.Utils
-import java.io.BufferedOutputStream
-import java.io.DataInputStream
-import java.io.OutputStream
+import org.json.JSONObject
+import java.io.*
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.SocketTimeoutException
 
 
+class N5OutputClient(val host: String = Config.POS_N5_IP, val port: Int = Config.POS_N5_JSON_SERVER_PORT, val soTimeout: Int = 20000) {
+    private var socket: Socket
+    private var inputStream: DataInputStream
+    private var outputStream: OutputStream
 
-class OutputClient(val host: String = Config.PREDHOST_IP, val port: Int = Config.PREDHOST_PORT, val soTimeout: Int = 20000) {
-    lateinit var socket: Socket
-    lateinit var inputStream: DataInputStream
-    lateinit var outputStream: OutputStream
-
-    private fun connect() {
+    init {
         try {
             socket = Socket()
             socket.soTimeout = soTimeout
@@ -33,23 +29,22 @@ class OutputClient(val host: String = Config.PREDHOST_IP, val port: Int = Config
         }
     }
 
+
+
     fun send(transMessage: TransMessage):TransMessage {
-        connect()
         try {
-            var requestIsoMsg = TransMessageHelper.encodeTransMessageToISOMessage(transMessage)
-            var isoMsgBody = OpenwayUtils.packOpenwayMessage(requestIsoMsg)
-            isoMsgBody = Utils.shortToByteArray(isoMsgBody.size.toShort()) + isoMsgBody
-            outputStream.write(isoMsgBody)
-            outputStream.flush()
-            val size = inputStream.readShort()
-            var response = ByteArray(0)
-            for (i in 0 until size) {
-                response += inputStream.readByte()
+            val requestBody=TransMessageHelper.transMessageToJsonRequest(transMessage).toString()
+            val writer = PrintWriter(outputStream, true)
+            writer.println(requestBody)
+
+            val reader = BufferedReader(InputStreamReader(inputStream))
+
+            while (!reader.ready()) {
+
             }
-            val responseIsoMsg = OpenwayUtils.unpackOpenwayMessage(response)
-            val result=TransMessageHelper.decodeISOMessageToTransMessage(responseIsoMsg)
-            socket.close()
-            return result
+            val text = reader.readLine()
+            val jsonResponse=JSONObject(text)
+            return TransMessageHelper.jsonResponseToTransMessage(jsonResponse)
         } catch (e:BaseException) {
             throw e
         }

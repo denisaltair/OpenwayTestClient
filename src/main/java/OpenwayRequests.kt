@@ -7,7 +7,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 object OpenwayRequests {
-    var outputClient=OutputClient()
+    var outputClient:OutputClient=OutputClient()
 
     fun checkConnect(tid:String=Config.TESTS_TERMINAL_1, stan:String="000001"):TransMessage {
         val transMessage=TransMessage()
@@ -40,7 +40,6 @@ object OpenwayRequests {
     fun sendRequest(transMessage: TransMessage):TransMessage {
         TimeUnit.SECONDS.sleep(Config.SLEEP_BETWEEN_REQUESTS.toLong())
         var responseTransMessage=outputClient.send(transMessage)
-        outputClient.close()
 
         if (responseTransMessage.openwayResponseCode!= OpenwayResponseCode.SERVER_NOT_RESPONDING) return responseTransMessage
 
@@ -52,7 +51,6 @@ object OpenwayRequests {
             outputClient=OutputClient()
             transMessage.mti=mti
             responseTransMessage=outputClient.send(transMessage)
-            outputClient.close()
             i--
         } while (responseTransMessage.openwayResponseCode== OpenwayResponseCode.SERVER_NOT_RESPONDING && i!=0)
         return responseTransMessage
@@ -117,6 +115,13 @@ object OpenwayRequests {
         val transMessage=_transMessage.clone()
         transMessage.mti=if(!isRepeat) "500" else "501"
         transMessage.processCode="920000"
+        return sendRequest(transMessage)
+    }
+
+    fun getReport(_transMessage: TransMessage, isRepeat:Boolean=false):TransMessage {
+        val transMessage=_transMessage.clone()
+        transMessage.mti=if(!isRepeat) "900" else "901"
+        transMessage.processCode="000000"
         return sendRequest(transMessage)
     }
 
