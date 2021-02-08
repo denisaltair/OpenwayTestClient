@@ -482,7 +482,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB404=Utils.getGUID()
+        val guidB404 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testCard = MAG_1,
             testNumber = "B4.04",
@@ -497,7 +497,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, NO_SUCH_CARD)
 
 //--------------------------------------------------------------
-        val guidB406=Utils.getGUID()
+        val guidB406 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.06",
             testCard = MAG_2,
@@ -526,7 +526,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB408=Utils.getGUID()
+        val guidB408 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.08",
             testCard = EMV_9,
@@ -541,7 +541,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB409=Utils.getGUID()
+        val guidB409 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.09",
             testCard = MAG_2,
@@ -570,7 +570,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB412=Utils.getGUID()
+        val guidB412 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.12",
             testCard = MAG_2,
@@ -585,7 +585,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB413=Utils.getGUID()
+        val guidB413 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.13",
             testCard = EMV_9,
@@ -600,7 +600,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB414=Utils.getGUID()
+        val guidB414 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.14",
             testCard = MAG_2,
@@ -615,7 +615,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB415=Utils.getGUID()
+        val guidB415 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.15",
             testCard = EMV_9,
@@ -630,7 +630,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB419=Utils.getGUID()
+        val guidB419 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.19",
             testCard = EMV_3,
@@ -659,7 +659,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB421=Utils.getGUID()
+        val guidB421 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B4.21",
             testCard = MAG_2,
@@ -739,7 +739,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB505=Utils.getGUID()
+        val guidB505 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B5.05",
             testCard = MAG_2,
@@ -763,7 +763,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         println(testResult.resultMessage)
 
 //--------------------------------------------------------------
-        val guidB601=Utils.getGUID()
+        val guidB601 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B6.01",
             testCard = MAG_2,
@@ -778,7 +778,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
-        val guidB604=Utils.getGUID()
+        val guidB604 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B6.04",
             testCard = MAG_2,
@@ -811,5 +811,70 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
     }
 
 
+    @Test
+    fun testB7() {
+        println("B7. Database Error (Terminals 7)*")
 
+        var testResult: TestResult
+//===================================================================
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
+//--------------------------------------------------------------
+        val guidB701 = Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B7.01",
+            testCard = EMV_3,
+            operationType = PURCHASE,
+            amount = BigDecimal(701.06),
+            cardHolderVerificationType = SIGNED,
+            description = "EMV Purchase SBT",
+            cardSlotType = MAGNETIC_STRIPE,
+            guid = guidB701
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        val guidB702 = Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B7.02",
+            testCard = MAG_2,
+            operationType = PURCHASE,
+            amount = BigDecimal(702.06),
+            cardHolderVerificationType = SIGNED,
+            description = "Purchase SBT",
+            cardSlotType = MAGNETIC_STRIPE,
+            guid = guidB702
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+
+        //----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "B7.04A",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, DUPLICATE_TRANSMISSION)
+
+
+        //----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "B7.04B",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, DUPLICATE_TRANSMISSION)
+
+        //----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "B7.04D",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+    }
 }
