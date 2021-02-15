@@ -1,4 +1,4 @@
-package OpenwayTests.pos_test
+package OpenwayTests.pos_test.only_magnetic_cards
 
 import entities.TestResult
 import enums.*
