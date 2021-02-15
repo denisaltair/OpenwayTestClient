@@ -22,7 +22,7 @@ object EmvCardsTesterHelper {
                     cardSlotType: CardSlotType=CardSlotType.ANYONE, tid:String=Config.TESTS_TERMINAL_1,
                     guid:String=Utils.getGUID(), parentGuid:String="", isRepeat:Boolean=false, currency: Currency?=null,
                     description:String="", cashBackAmount:BigDecimal= BigDecimal.ZERO, isWithMac:Boolean=false, isWithSecureIso:Boolean=false
-                    , cvv2:String?=null, testNumber:String="") :TestResult {
+                    , cvv2:String?=null, testNumber:String="", pin:String?=null) :TestResult {
 
         try {
             val transMessage = TransMessage()
@@ -45,7 +45,9 @@ object EmvCardsTesterHelper {
             transMessage.isRepeat=isRepeat
             transMessage.testNumber=testNumber
 
-            if (cardHolderVerificationType==CardHolderVerificationType.ONLINE_PIN) transMessage.pin=testCard.pin
+            if (cardHolderVerificationType==CardHolderVerificationType.ONLINE_PIN) {
+                transMessage.pin= pin ?: testCard.pin
+            }
             transMessage.cardExpiredDate=testCard.expiredDate
 
             val responseTransMessage=N5OutputClient().send(transMessage)
