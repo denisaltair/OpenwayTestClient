@@ -646,7 +646,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB14.01A",
             testCard = EMV_13,
-            operationType = PURCHASE,
+            operationType = AUTHORISATION,
             amount = BigDecimal(14.83),
             cardHolderVerificationType = SIGNED,
             description = "Authorization",
@@ -669,10 +669,52 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "DB14.03",
+            testCard = EMV_13,
+            operationType = PURCHASE,
+            amount = BigDecimal(14.85),
+            cardHolderVerificationType = SIGNED,
+            description = "Purchase",
+            cardSlotType = RF
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "DB14.02B",
+            testCard = EMV_13,
+            operationType = REVERSAL,
+            amount = BigDecimal(14.84),
+            cardHolderVerificationType = SIGNED,
+            description = "Universal Reversal DB14.02A",
+            cardSlotType = RF,
+            parentGuid = guidDB1402A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "DB14.01B",
+            testCard = EMV_13,
+            operationType = AUTHORISATION_CONFIRMATION,
+            amount = BigDecimal(14.83),
+            cardHolderVerificationType = SIGNED,
+            description = "Authorisation Confirmation DB14.01A",
+            cardSlotType = RF,
+            parentGuid = guidDB1401A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             operationType = RECONCILIATION,
-            testNumber = "DB14.06",
+            testNumber = "DB14.05",
             description = "Reconciliation"
         )
         println(testResult.resultMessage)
