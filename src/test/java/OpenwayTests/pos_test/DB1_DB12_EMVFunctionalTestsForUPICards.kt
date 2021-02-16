@@ -3,7 +3,9 @@ package OpenwayTests.pos_test
 import entities.TestResult
 import enums.CardHolderVerificationType.*
 import enums.CardSlotType.*
+import enums.OpenwayResponseCode
 import enums.OpenwayResponseCode.*
+import enums.OperationType
 import enums.OperationType.*
 import enums.TestCards.*
 import helpers.EmvCardsTesterHelper
@@ -21,9 +23,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB1. On-Line Processing, On-Line PIN (Terminals 1, 2)")
 
         var testResult: TestResult
-//===================================================================
-       testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB101=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -81,10 +86,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB1.12",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB1.12 Reconciliation, rrn:" + testResult.rrn)
 
     }
 
@@ -93,9 +102,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB2. On-Line Processing, Offline PIN (Terminals 1, 2)")
 
         var testResult: TestResult
-//===================================================================
-           testResult = MagneticCardsTesterHelper.makeReconciliation()
-           println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB201=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -150,10 +162,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB2.10",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB2.10 Reconciliation, rrn:" + testResult.rrn)
 
     }
 
@@ -162,11 +178,11 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB3. On-Line Processing, SBT (Terminals 1, 2)")
 
         var testResult: TestResult
-//===================================================================
-           testResult = MagneticCardsTesterHelper.makeReconciliation()
-            println("Reconciliation, rrn:" + testResult.rrn)
-
-
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
 //--------------------------------------------------------------
         val guidDB301A=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -282,10 +298,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB3.07",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB3.07 Reconciliation, rrn:" + testResult.rrn)
     }
 
     @Test
@@ -293,9 +313,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB4. On-Line Processing, SBT (Terminals 3)")
 
         var testResult: TestResult
-//===================================================================
-//        testResult = MagneticCardsTesterHelper.makeReconciliation()
-//        println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB401A=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -311,7 +334,6 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        return
 //--------------------------------------------------------------
         val guidDB402A=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -357,10 +379,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB4.03",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB4.03 Reconciliation, rrn:" + testResult.rrn)
     }
 
     @Test
@@ -368,9 +394,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB7. On-Line Fallback Processing (Terminals 1)")
 
         var testResult: TestResult
-//===================================================================
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB701A=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -508,10 +537,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB7.07",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB7.07 Reconciliation, rrn:" + testResult.rrn)
     }
 
     @Test
@@ -519,9 +552,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB8. On-Line Processing, Manual (Terminal 3)")
 
         var testResult: TestResult
-//===================================================================
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB801A=Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -585,10 +621,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB8.03",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB8.03 Reconciliation, rrn:" + testResult.rrn)
     }
 
     @Test
@@ -596,16 +636,18 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB14.  On-Line/OffLine Contactless Processing, SBT, UnionPay QuickPass qUICS  (Terminal 1,2)")
 
         var testResult: TestResult
-//===================================================================
-//        testResult = MagneticCardsTesterHelper.makeReconciliation()
-//        println("Reconciliation, rrn:" + testResult.rrn)
-//--------------------------------------------------------------
+        //--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
         val guidDB1401A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB14.01A",
             testCard = EMV_13,
             operationType = PURCHASE,
-            amount = BigDecimal(10),
+            amount = BigDecimal(14.83),
             cardHolderVerificationType = SIGNED,
             description = "Authorization",
             cardSlotType = RF,
@@ -613,7 +655,6 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        return
 //--------------------------------------------------------------
         val guidDB1402A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -628,52 +669,14 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "DB14.03",
-//            testCard = EMV_13,
-//            operationType = PURCHASE,
-//            amount = BigDecimal(14.85),
-//            cardHolderVerificationType = SIGNED,
-//            description = "Purchase",
-//            cardSlotType = RF
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
-//
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "DB14.02B",
-//            testCard = EMV_13,
-//            operationType = REVERSAL,
-//            amount = BigDecimal(14.84),
-//            cardHolderVerificationType = SIGNED,
-//            description = "Universal Reversal DB14.02A",
-//            cardSlotType = RF,
-//            parentGuid = guidDB1402A
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
-//
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "DB14.01A",
-//            testCard = EMV_13,
-//            operationType = AUTHORISATION_CONFIRMATION,
-//            amount = BigDecimal(14.83),
-//            cardHolderVerificationType = SIGNED,
-//            description = "Authorisation Confirmation DB14.01A",
-//            cardSlotType = RF,
-//            parentGuid = guidDB1401A
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB14.06",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB14.05 Reconciliation, rrn:" + testResult.rrn)
     }
 
     @Test
@@ -681,9 +684,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB15.  On-Line/OffLine Contactless Processing, PBT, UnionPay QuickPass qUICS  (Terminal 1,2)")
 
         var testResult: TestResult
-//===================================================================
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB1501A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -755,10 +761,15 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB15.06",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB15.05 Reconciliation, rrn:" + testResult.rrn)
+
     }
 
     @Test
@@ -766,9 +777,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println("DB16. On-Line/Off-Line Contact Processing, PBT, UnionPay QuickPass  (Terminal 1,2)")
 
         var testResult: TestResult
-//===================================================================
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
 //--------------------------------------------------------------
         val guidDB1601A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -840,10 +854,15 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "DB16.06",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("DB15.05 Reconciliation, rrn:" + testResult.rrn)
+
     }
 
 }

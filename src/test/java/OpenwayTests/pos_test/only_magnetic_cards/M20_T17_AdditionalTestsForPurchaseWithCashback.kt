@@ -90,10 +90,37 @@ class M20_T17_AdditionalTestsForPurchaseWithCashback: TestCase() {
             description = "Reconciliation"
         )
         println(testResult.resultMessage)
-        TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)
     }
 
 
+    //T17. Purchase with Cashback Timeout (Terminal 1)*
+    @Test
+    fun testT17() {
+        println("T17. Purchase with Cashback Timeout(Terminals 1)")
+
+        var testResult: TestResult
+
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = OperationType.RECONCILIATION,
+            description = "Reconciliation"
+        )
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "T17.01",
+            testCard = TestCards.MAG_7,
+            operationType = OperationType.PURCHASE_WITH_CASH_BACK,
+            amount = BigDecimal(1701.70),
+            cashBackAmount = BigDecimal(10),
+            currency = Currency.USD,
+            description = "Purchase with cashback SBT",
+            cardHolderVerificationType = CardHolderVerificationType.SIGNED,
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.valueOfFromCode("82"))
+    }
 
 
 

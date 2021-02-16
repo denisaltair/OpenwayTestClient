@@ -24,12 +24,12 @@ class D1_D13_EmvFunctionalTests : TestCase() {
         var testResult: TestResult
 //===================================================================
 //-----------------Reconciliation------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+//        testResult = MagneticCardsTesterHelper.makeReconciliation()
+//        println("Reconciliation, rrn:" + testResult.rrn)
 //-----------------D1.01---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             operationType = AUTHORISATION, amount = BigDecimal(101.04),
-            cardHolderVerificationType = ONLINE_PIN, tid = Config.TESTS_TERMINAL_1, currency = RUB, testCard = EMV_3,
+            cardHolderVerificationType = SIGNED, tid = Config.TESTS_TERMINAL_1, currency = RUB, testCard = EMV_3,
             description = "D1.01 Card: EMV_3 Purchase PBT"
         )
 
