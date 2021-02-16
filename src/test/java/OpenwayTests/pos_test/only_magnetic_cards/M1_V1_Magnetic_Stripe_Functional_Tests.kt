@@ -10,6 +10,7 @@ import enums.TestCards.*
 import helpers.EmvCardsTesterHelper
 import junit.framework.TestCase
 import kz.multibank.cardposclient.entities.Currency
+import kz.multibank.cardposclient.entities.Currency.*
 import org.junit.Test
 import other.Utils
 import java.math.BigDecimal
@@ -179,6 +180,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             operationType = PURCHASE,
             amount = BigDecimal(203.03),
             description = "Purchase",
+            currency = USD,
             cardHolderVerificationType = SIGNED,
             cardSlotType = MAGNETIC_STRIPE
         )
@@ -261,6 +263,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             operationType = PURCHASE,
             amount = BigDecimal(Config.MAX_AMOUNT_VALUE),
             description = "Purchase",
+            currency = USD,
             cardSlotType = MANUAL
         )
         println(testResult.resultMessage)
@@ -612,7 +615,6 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             amount = BigDecimal(903.00),
             description = "Manual Confirmation M9.03A. Repeat",
             cardSlotType = MANUAL,
-            isRepeat = true,
             parentGuid = guidM903A
         )
         println(testResult.resultMessage)
@@ -626,7 +628,6 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             amount = BigDecimal(9030.00),
             description = "Manual Confirmation M9.03A. Repeat. Wrong Amount.",
             cardSlotType = MANUAL,
-            isRepeat = true,
             parentGuid = guidM903A
         )
         println(testResult.resultMessage)
@@ -666,7 +667,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             testCard = MAG_1,
             operationType = AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(905.00),
-            currency = Currency.USD,
+            currency = USD,
             description = "Manual Confirmation M9.06A. Wrong Currency",
             cardSlotType = MANUAL,
             parentGuid = guidM906A
@@ -680,7 +681,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             testCard = MAG_1,
             operationType = AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(905.00),
-            currency = Currency.USD,
+            currency = USD,
             description = "Manual Confirmation M9.06A. Wrong Currency",
             cardSlotType = MANUAL,
             parentGuid = guidM906A
@@ -744,6 +745,62 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
+        //--------------------------------------------------------------
+        val guidM909A = Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M9.09A",
+            testCard = MAG_1,
+            operationType = AUTHORISATION,
+            amount = BigDecimal(909.00),
+            description = "Authorisation SBT",
+            cardSlotType = MAGNETIC_STRIPE,
+            cardHolderVerificationType = SIGNED,
+            guid = guidM909A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        //--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M9.09B",
+            testCard = MAG_1,
+            operationType = REVERSAL,
+            amount = BigDecimal(909.0),
+            description = "Universal Reversal M9.09A.",
+            cardSlotType = MAGNETIC_STRIPE,
+            parentGuid = guidM909A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        //--------------------------------------------------------------
+        val guidM910A = Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M9.10A",
+            testCard = MAG_2,
+            operationType = AUTHORISATION,
+            amount = BigDecimal(910.13),
+            description = "Authorisation PBT",
+            cardSlotType = MAGNETIC_STRIPE,
+            cardHolderVerificationType = ONLINE_PIN,
+            guid = guidM910A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        //--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M9.10B",
+            testCard = MAG_2,
+            operationType = REVERSAL,
+            amount = BigDecimal(90.10),
+            description = "Universal Reversal M9.10A.",
+            cardSlotType = MAGNETIC_STRIPE,
+            parentGuid = guidM910A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
 
         //--------------------------------------------------------------
         val guidM911A = Utils.getGUID()
@@ -766,7 +823,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             testCard = MAG_1,
             operationType = AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(912.0),
-            currency = Currency.USD,
+            currency = USD,
             description = "Confirmation M9.11A. Wrong Card Number",
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidM911A
@@ -870,7 +927,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
 //--------------------------------------------------------------
         val guidM1502A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "M15.01A",
+            testNumber = "M15.02A",
             testCard = MAG_2,
             operationType = PURCHASE,
             amount = BigDecimal(1502.00),
@@ -958,6 +1015,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             amount = BigDecimal(1505.00),
             description = "Purchase SBT",
             cardSlotType = MAGNETIC_STRIPE,
+            currency = RUB,
             cardHolderVerificationType = SIGNED,
             guid = guidM1505A
         )
@@ -972,6 +1030,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             amount = BigDecimal(15050.00),
             description = "Universal Reversal M15.05A. Wrong Amount",
             cardSlotType = MAGNETIC_STRIPE,
+            currency = RUB,
             parentGuid = guidM1505A
         )
         println(testResult.resultMessage)
@@ -985,7 +1044,6 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             amount = BigDecimal(1503.00),
             description = "Universal Reversal M15.03A. Repeat",
             cardSlotType = MAGNETIC_STRIPE,
-            isRepeat = true,
             parentGuid = guidM1503A
         )
         println(testResult.resultMessage)

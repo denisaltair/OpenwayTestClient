@@ -596,8 +596,8 @@ class M1_V1_MagneticStripeFunctionalTests : TestCase() {
                 tid = Config.TESTS_TERMINAL_1,
                 parentGuid = guidM903A
             )
-            //assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_AMOUNT)
-            //println("M9.03D Manual Confirmation M9.03A Repeat. Wrong Amount:" + testResult.rrn)
+            assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_AMOUNT)
+            println("M9.03D Manual Confirmation M9.03A Repeat. Wrong Amount:" + testResult.rrn)
 
 //-----------------M9.03E------------------------------------------
             testResult = MagneticCardsTesterHelper.sendRequest(
