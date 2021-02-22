@@ -310,7 +310,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             testNumber = "M8.02A",
             testCard = MAG_2,
             operationType = PURCHASE,
-            amount = BigDecimal(803.00),
+            amount = BigDecimal(802.00),
             description = "SBT",
             cardSlotType = MAGNETIC_STRIPE,
             cardHolderVerificationType = SIGNED,
@@ -500,7 +500,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             testNumber = "M9.02B",
             testCard = MAG_2,
             operationType = AUTHORISATION_CONFIRMATION,
-            amount = BigDecimal(902.00),
+            amount = BigDecimal(906.00),
             description = "Manual Confirmation M9.02A",
             cardSlotType = MANUAL,
             parentGuid = guidM902A

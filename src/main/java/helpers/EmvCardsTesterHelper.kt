@@ -4,6 +4,7 @@ import N5OutputClient
 import entities.TestResult
 import entities.TransMessage
 import enums.*
+import enums.OperationType.*
 import kz.multibank.cardposclient.entities.Currency
 import kz.multibank.cardposclient.exceptions.TransMessageException
 import other.OpenwayCryptoUtils
@@ -26,7 +27,13 @@ object EmvCardsTesterHelper {
 
         try {
             val transMessage = TransMessage()
+
+
             transMessage.operationType=operationType
+
+            if (transMessage.operationType in arrayOf(REFUND,REVERSAL, AUTO_REVERSAL, PURCHASE_RETURN)) {
+                transMessage.cardHolderVerificationType=CardHolderVerificationType.SIGNED
+            }
             transMessage.tid=tid
             transMessage.currency= currency ?: testCard.currency
             transMessage.amount=amount
@@ -44,6 +51,7 @@ object EmvCardsTesterHelper {
             transMessage.track2=testCard.track2
             transMessage.isRepeat=isRepeat
             transMessage.testNumber=testNumber
+
 
             if (cardHolderVerificationType==CardHolderVerificationType.ONLINE_PIN) {
                 transMessage.pin= pin ?: testCard.pin

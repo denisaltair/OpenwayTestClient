@@ -336,7 +336,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase() {
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "Q5.03",
-            testCard = TestCards.MAG_2,
+            testCard = TestCards.MAG_1,
             operationType = OperationType.PURCHASE,
             amount = BigDecimal(503.10),
             description = "Purchase, Extra field 48",
@@ -630,6 +630,18 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase() {
             description = "Automatic Reversal of Q9.02A",
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
             parentGuid = guidQ902A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "Q9.03",
+            testCard = TestCards.MAG_1,
+            operationType = OperationType.PURCHASE,
+            amount = BigDecimal(903.10),
+            description = "Purchase, Valid Processing code in response",
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)

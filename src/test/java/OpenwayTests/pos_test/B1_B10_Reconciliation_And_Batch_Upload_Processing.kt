@@ -21,8 +21,12 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         println("B1 – B3. Online Normal Processing (Terminals 1, 2)")
 
         var testResult: TestResult
-//===================================================================
-        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
+        //----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
 
 //--------------------------------------------------------------
         val guidB101 = Utils.getGUID()
@@ -59,7 +63,6 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             testCard = MAG_1,
             operationType = REVERSAL,
             amount = BigDecimal(101.06),
-            cardHolderVerificationType = ONLINE_PIN,
             description = "Magnetic Stripe Universal Reversal B1.01",
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidB101
@@ -90,7 +93,6 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             testCard = MAG_1,
             operationType = REVERSAL,
             amount = BigDecimal(10.4),
-            cardHolderVerificationType = SIGNED,
             description = "Magnetic Stripe Universal Reversal B1.04",
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidB104
@@ -120,7 +122,6 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             testCard = MAG_2,
             operationType = REVERSAL,
             amount = BigDecimal(106.06),
-            cardHolderVerificationType = SIGNED,
             description = "Magnetic Stripe Universal Reversal B1.06",
             cardSlotType = MANUAL,
             parentGuid = guidB106
@@ -183,7 +184,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(111.06),
             cardHolderVerificationType = SIGNED,
             description = "EMV PURCHASE",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB111
         )
         println(testResult.resultMessage)
@@ -213,7 +214,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(113.06),
             cardHolderVerificationType = SIGNED,
             description = "EMV Authorisation",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB113
         )
         println(testResult.resultMessage)
@@ -243,7 +244,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(115.06),
             cardHolderVerificationType = SIGNED,
             description = "EMV Purchase",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB115
         )
         println(testResult.resultMessage)
@@ -258,7 +259,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(117.06),
             cardHolderVerificationType = SIGNED,
             description = "EMV Purchase",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB117
         )
         println(testResult.resultMessage)
@@ -326,7 +327,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(113.06),
             cardHolderVerificationType = SIGNED,
             description = "Authorisation Confirmation B1.13",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             parentGuid = guidB113
         )
         println(testResult.resultMessage)
@@ -354,7 +355,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(11.10),
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal B1.11",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             parentGuid = guidB111
         )
         println(testResult.resultMessage)
@@ -407,7 +408,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(301.06),
             cardHolderVerificationType = SIGNED,
             description = "Authorisation",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB301
         )
         println(testResult.resultMessage)
@@ -475,7 +476,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(101.06),
             cardHolderVerificationType = ONLINE_PIN,
             description = "Universal Reversal",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             parentGuid = guidB115
         )
         println(testResult.resultMessage)
@@ -563,7 +564,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(117.06),
             cardHolderVerificationType = SIGNED,
             description = "Refund B1.17 (For Terminal 1 only)",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             parentGuid = guidB117
         )
         println(testResult.resultMessage)
@@ -638,7 +639,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(419.06),
             cardHolderVerificationType = SIGNED,
             description = "Purchase",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB419
         )
         println(testResult.resultMessage)
@@ -652,7 +653,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(419.06),
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal B4.19",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             parentGuid = guidB419
         )
         println(testResult.resultMessage)
@@ -827,7 +828,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(701.06),
             cardHolderVerificationType = SIGNED,
             description = "EMV Purchase SBT",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB701
         )
         println(testResult.resultMessage)
@@ -876,5 +877,133 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
+    }
+
+    @Test
+    fun testB9() {
+        println("B9. Normal Processing")
+
+        var testResult: TestResult
+//===================================================================
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.01",
+            testCard = EMV_9,
+            operationType = PURCHASE,
+            amount = BigDecimal(901.06),
+            cardHolderVerificationType = ONLINE_PIN,
+            description = "FALLBACK!  PBT",
+            cardSlotType = ICC
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.02",
+            testCard = EMV_3,
+            operationType = PURCHASE,
+            amount = BigDecimal(902.06),
+            cardHolderVerificationType = SIGNED,
+            description = "FALLBACK!  SBT",
+            cardSlotType = ICC
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        val guidB903A=Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.03A",
+            testCard = MAG_2,
+            operationType = PURCHASE,
+            amount = BigDecimal(903.06),
+            cardHolderVerificationType = ONLINE_PIN,
+            description = "Magnetic Stripe Purchase PBT",
+            cardSlotType = MAGNETIC_STRIPE,
+            guid = guidB903A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.03B",
+            testCard = MAG_2,
+            operationType = REVERSAL,
+            amount = BigDecimal(903.06),
+            description = "Universal Reversal B9.03A",
+            cardSlotType = MAGNETIC_STRIPE,
+            parentGuid = guidB903A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        val guidB904A=Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.04A",
+            testCard = EMV_3,
+            operationType = PURCHASE,
+            amount = BigDecimal(904.06),
+            cardHolderVerificationType = SIGNED,
+            description = "EMV Purchase SBT",
+            cardSlotType = ICC,
+            guid = guidB904A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.04B",
+            testCard = EMV_3,
+            operationType = REVERSAL,
+            amount = BigDecimal(90.46),
+            description = "Universal Reversal B9.04A",
+            cardSlotType = ICC,
+            parentGuid = guidB904A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        val guidB905A=Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.05A",
+            testCard = EMV_9,
+            operationType = PURCHASE,
+            amount = BigDecimal(905.06),
+            cardHolderVerificationType = SIGNED,
+            description = "EMV Purchase Manual",
+            cardSlotType = MANUAL,
+            guid = guidB905A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "B9.05B",
+            testCard = EMV_9,
+            operationType = REVERSAL,
+            amount = BigDecimal(905.06),
+            description = "Universal Reversal B9.05A",
+            cardSlotType = ICC,
+            parentGuid = guidB905A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "B9.06",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
     }
 }

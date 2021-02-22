@@ -62,7 +62,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.05",
+            testNumber = "R1.04",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(50.0),
@@ -75,7 +75,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.06",
+            testNumber = "R1.05",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(60.0),
@@ -88,7 +88,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.09",
+            testNumber = "R1.06",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(90.0),
@@ -101,7 +101,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.12",
+            testNumber = "R1.07",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(120.0),
@@ -114,7 +114,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.13",
+            testNumber = "R1.08",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(130.0),
@@ -127,7 +127,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.14",
+            testNumber = "R1.09",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(140.0),
@@ -140,7 +140,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.15",
+            testNumber = "R1.10",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(150.0),
@@ -153,7 +153,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.17",
+            testNumber = "R1.11",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(170.0),
@@ -166,7 +166,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.18",
+            testNumber = "R1.12",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(180.0),
@@ -180,7 +180,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.19",
+            testNumber = "R1.13",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(190.0),
@@ -193,7 +193,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.20",
+            testNumber = "R1.14",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(200.0),
@@ -206,7 +206,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.21",
+            testNumber = "R1.15",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(210.0),
@@ -219,7 +219,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.22",
+            testNumber = "R1.16",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(220.0),
@@ -232,7 +232,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.23",
+            testNumber = "R1.17",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(230.0),
@@ -245,7 +245,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.24",
+            testNumber = "R1.18",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(240.0),
@@ -258,7 +258,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.25",
+            testNumber = "R1.19",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(250.0),
@@ -271,7 +271,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.26",
+            testNumber = "R1.20",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(260.0),
@@ -284,7 +284,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.27",
+            testNumber = "R1.21",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(270.0),
@@ -297,7 +297,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.28",
+            testNumber = "R1.22",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(280.0),
@@ -310,7 +310,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.29",
+            testNumber = "R1.23",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(290.0),
@@ -323,7 +323,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.30",
+            testNumber = "R1.24",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(300.0),
@@ -336,7 +336,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.31",
+            testNumber = "R1.25",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(310.0),
@@ -349,7 +349,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.32",
+            testNumber = "R1.26",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(320.0),
@@ -362,7 +362,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.39",
+            testNumber = "R1.27",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(390.0),
@@ -375,7 +375,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.40",
+            testNumber = "R1.28",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(400.0),
@@ -388,7 +388,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.42",
+            testNumber = "R1.29",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(420.0),
@@ -401,7 +401,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.44",
+            testNumber = "R1.30",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(440.0),
@@ -412,22 +412,22 @@ class R1_R3_RCAcceptanceTests {
         println(testResult.resultMessage)
         TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode1.valueOfFromCode("44"))
 
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "R1.50",
-//            testCard = TestCards.MAG_6,
-//            operationType = OperationType.AUTHORISATION,
-//            amount = BigDecimal(500.0),
-//            description = OpenwayResponseCode1.valueOfFromCode("50").toString(),
-//            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-//            cardHolderVerificationType = CardHolderVerificationType.SIGNED
-//        )
-//        println(testResult.resultMessage)
-//        TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode1.valueOfFromCode("50"))
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "R1.31",
+            testCard = TestCards.MAG_6,
+            operationType = OperationType.AUTHORISATION,
+            amount = BigDecimal(500.0),
+            description = OpenwayResponseCode1.valueOfFromCode("50").toString(),
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
+            cardHolderVerificationType = CardHolderVerificationType.SIGNED
+        )
+        println(testResult.resultMessage)
+        TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode1.valueOfFromCode("50"))
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.51",
+            testNumber = "R1.32",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(510.0),
@@ -440,7 +440,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.52",
+            testNumber = "R1.33",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(520.0),
@@ -453,7 +453,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.53",
+            testNumber = "R1.34",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(530.0),
@@ -466,7 +466,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.54",
+            testNumber = "R1.35",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(540.0),
@@ -479,7 +479,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.55",
+            testNumber = "R1.36",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(550.0),
@@ -492,7 +492,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.56",
+            testNumber = "R1.37",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(560.0),
@@ -505,7 +505,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.57",
+            testNumber = "R1.38",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(570.0),
@@ -518,7 +518,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.58",
+            testNumber = "R1.39",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(580.0),
@@ -531,7 +531,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.59",
+            testNumber = "R1.40",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(590.0),
@@ -544,7 +544,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.60",
+            testNumber = "R1.41",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(600.0),
@@ -557,7 +557,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.61",
+            testNumber = "R1.42",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(610.0),
@@ -570,7 +570,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.62",
+            testNumber = "R1.43",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(620.0),
@@ -583,7 +583,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.63",
+            testNumber = "R1.44",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(630.0),
@@ -596,7 +596,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.64",
+            testNumber = "R1.45",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(640.0),
@@ -609,7 +609,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.65",
+            testNumber = "R1.46",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(650.0),
@@ -622,7 +622,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.66",
+            testNumber = "R1.47",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(660.0),
@@ -635,7 +635,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.68",
+            testNumber = "R1.48",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(680.0),
@@ -648,7 +648,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.75",
+            testNumber = "R1.49",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(750.0),
@@ -661,7 +661,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.76",
+            testNumber = "R1.50",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(760.0),
@@ -674,7 +674,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.77",
+            testNumber = "R1.51",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(770.0),
@@ -687,7 +687,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.78",
+            testNumber = "R1.52",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(780.0),
@@ -700,7 +700,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.79",
+            testNumber = "R1.53",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(790.0),
@@ -713,7 +713,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.80",
+            testNumber = "R1.54",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(800.0),
@@ -726,7 +726,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.81",
+            testNumber = "R1.55",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(810.0),
@@ -739,7 +739,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.82",
+            testNumber = "R1.56",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(820.0),
@@ -752,7 +752,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.83",
+            testNumber = "R1.57",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(830.0),
@@ -765,7 +765,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.84",
+            testNumber = "R1.58",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(840.0),
@@ -778,7 +778,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.85",
+            testNumber = "R1.59",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(850.0),
@@ -791,7 +791,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.86",
+            testNumber = "R1.60",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(860.0),
@@ -802,22 +802,22 @@ class R1_R3_RCAcceptanceTests {
         println(testResult.resultMessage)
         TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode1.valueOfFromCode("86"))
 
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "R1.87",
-//            testCard = TestCards.MAG_6,
-//            operationType = OperationType.AUTHORISATION,
-//            amount = BigDecimal(870.0),
-//            description = OpenwayResponseCode1.valueOfFromCode("87").toString(),
-//            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-//            cardHolderVerificationType = CardHolderVerificationType.SIGNED
-//        )
-//        println(testResult.resultMessage)
-//        TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode1.valueOfFromCode("87"))
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "R1.61",
+            testCard = TestCards.MAG_6,
+            operationType = OperationType.AUTHORISATION,
+            amount = BigDecimal(870.0),
+            description = OpenwayResponseCode1.valueOfFromCode("87").toString(),
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
+            cardHolderVerificationType = CardHolderVerificationType.SIGNED
+        )
+        println(testResult.resultMessage)
+        TestCase.assertEquals(testResult.openwayResponseCode, OpenwayResponseCode1.valueOfFromCode("87"))
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.88",
+            testNumber = "R1.62",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(880.0),
@@ -830,7 +830,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.89",
+            testNumber = "R1.63",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(890.0),
@@ -843,7 +843,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.90",
+            testNumber = "R1.64",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(900.0),
@@ -856,7 +856,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.91",
+            testNumber = "R1.65",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(910.0),
@@ -869,7 +869,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.92",
+            testNumber = "R1.66",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(920.0),
@@ -882,7 +882,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.93",
+            testNumber = "R1.67",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(930.0),
@@ -895,7 +895,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.94",
+            testNumber = "R1.68",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(940.0),
@@ -908,7 +908,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.95",
+            testNumber = "R1.69",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(950.0),
@@ -921,7 +921,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R1.96",
+            testNumber = "R1.70",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(960.0),
@@ -1047,7 +1047,7 @@ class R1_R3_RCAcceptanceTests {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "R2.05",
+            testNumber = "R2.08",
             testCard = TestCards.MAG_6,
             operationType = OperationType.AUTHORISATION,
             amount = BigDecimal(380.0),

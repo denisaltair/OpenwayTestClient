@@ -21,9 +21,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
 
         var testResult: TestResult
 //===================================================================
-//-------------------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
 //--------------------------------------------------------------
         var guidD1701A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -31,7 +29,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
             testCard = EMV_10,
             operationType = AUTHORISATION,
             amount = BigDecimal(17.04),
-            cardHolderVerificationType = SIGNED,
+            cardHolderVerificationType = ONLINE_PIN,
             tid = Config.TESTS_TERMINAL_1,
             description = "Authorisation (For Terminal 1 only)",
             cardSlotType = RF,
@@ -39,7 +37,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
+        return
 //--------------------------------------------------------------
         var guidD1702A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -115,9 +113,13 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D17.05",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("D17.05 Reconciliation, rrn:" + testResult.rrn)
 
 
     }
@@ -128,9 +130,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
 
         var testResult: TestResult
 //===================================================================
-//-------------------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
 //--------------------------------------------------------------
         var guidD1801A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -222,9 +222,13 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D18.05",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("D18.05 Reconciliation, rrn:" + testResult.rrn)
 
     }
 
@@ -234,9 +238,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
 
         var testResult: TestResult
 //===================================================================
-//-------------------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
 //--------------------------------------------------------------
         var guidD1901A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -328,9 +330,13 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D19.05",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("D19.05 Reconciliation, rrn:" + testResult.rrn)
     }
 
 
@@ -339,10 +345,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println("D22. On-Line/OffLine Contactless Processing, SBT, MC PayPass MChip Mode (Terminal 1,2)")
         var testResult: TestResult
 //===================================================================
-//-----------------Reconciliation------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
-
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
         //--------------------------------------------------------------
         var guidD2201A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -396,7 +399,6 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
             operationType = REVERSAL,
             amount = BigDecimal(22.05),
             cardHolderVerificationType = SIGNED,
-            tid = Config.TESTS_TERMINAL_1,
             description = "Universal Reversal D22.02A",
             cardSlotType = RF,
             parentGuid = guidD2202A
@@ -419,36 +421,36 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D22.04",
-            testCard = EMV_9,
-            operationType = PURCHASE,
-            amount = BigDecimal(0.22),
-            cardHolderVerificationType = SIGNED,
-            tid = Config.TESTS_TERMINAL_1,
-            description = "Purchase",
-            cardSlotType = RF
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D22.04",
+//            testCard = EMV_9,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(0.25),
+//            cardHolderVerificationType = SIGNED,
+//             description = "Purchase",
+//            cardSlotType = RF
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 
 //----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D22.05",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("D22.05 Reconciliation, rrn:" + testResult.rrn)
-
     }
 
     @Test
     fun testD23() {
         println("D23. On-Line/Offline Contactless Processing, PBT, MC PayPass MChip Mode  (Terminal 1,2)")
         var testResult: TestResult
-//===================================================================
-//-----------------Reconciliation------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+        //===================================================================
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
 
         //--------------------------------------------------------------
         var guidD2301A = Utils.getGUID()
@@ -525,25 +527,29 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D23.04",
-            testCard = EMV_9,
-            operationType = PURCHASE,
-            amount = BigDecimal(0.23),
-            cardHolderVerificationType = ONLINE_PIN,
-            tid = Config.TESTS_TERMINAL_1,
-            description = "Purchase",
-            cardSlotType = RF
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D23.04",
+//            testCard = EMV_9,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(0.23),
+//            cardHolderVerificationType = ONLINE_PIN,
+//            tid = Config.TESTS_TERMINAL_1,
+//            description = "Purchase",
+//            cardSlotType = RF
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 
 //----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D23.05",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("D23.05 Reconciliation, rrn:" + testResult.rrn)
 
     }
 
@@ -553,9 +559,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
 
         var testResult: TestResult
 //===================================================================
-//-------------------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
-        println("Reconciliation, rrn:" + testResult.rrn)
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
 //--------------------------------------------------------------
         var guidD2401A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -647,9 +651,13 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
-        testResult = MagneticCardsTesterHelper.makeReconciliation()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D24.05",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        println("D24.05 Reconciliation, rrn:" + testResult.rrn)
     }
 
 }

@@ -329,8 +329,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Purchase (Terminal 3)",
             cardSlotType = ICC,
-            guid=guidDB401A,
-            tid=Config.TESTS_TERMINAL_3
+            guid=guidDB401A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
@@ -344,8 +343,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Purchase (Terminal 3)",
             cardSlotType = ICC,
-            guid=guidDB402A,
-            tid=Config.TESTS_TERMINAL_3
+            guid=guidDB402A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
@@ -359,8 +357,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB4.01A",
             cardSlotType = ICC,
-            guid=guidDB401A,
-            tid=Config.TESTS_TERMINAL_3
+            guid=guidDB401A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
@@ -374,8 +371,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB4.02A",
             cardSlotType = ICC,
-            guid=guidDB402A,
-            tid=Config.TESTS_TERMINAL_3
+            guid=guidDB402A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
@@ -568,7 +564,6 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Purchase Manual",
             cardSlotType = MANUAL,
-            tid = Config.TESTS_TERMINAL_3,
             guid=guidDB801A
         )
         println(testResult.resultMessage)
@@ -583,7 +578,6 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Purchase Manual",
             cardSlotType = MANUAL,
-            tid = Config.TESTS_TERMINAL_3,
             guid=guidDB801A
         )
         println(testResult.resultMessage)
@@ -598,7 +592,6 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB801A",
             cardSlotType = MANUAL,
-            tid=Config.TESTS_TERMINAL_3,
             parentGuid = guidDB801A
 
         )
@@ -614,7 +607,6 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB802A",
             cardSlotType = MANUAL,
-            tid=Config.TESTS_TERMINAL_3,
             parentGuid = guidDB802A
 
         )
@@ -884,7 +876,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "DB16.01A",
+            testNumber = "DB16.01B",
             testCard = EMV_13,
             operationType = AUTHORISATION_CONFIRMATION,
             amount = BigDecimal(16.83),

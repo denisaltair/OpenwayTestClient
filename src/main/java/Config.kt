@@ -9,6 +9,9 @@ object Config {
     const val TESTS_TERMINAL_4="11399994"
     const val TESTS_TERMINAL_5="11399995"
 
+    const val WRONG_GUID="ca0c55de-f9fd-4135-99d7-e05c458af369"
+
+
     const val POS_N5_IP="192.168.1.105"
     const val POS_N5_JSON_SERVER_PORT=1025
     const val POS_N5_OPENWAY_SERVER_PORT=1026

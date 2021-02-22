@@ -182,7 +182,7 @@ class S2_SecureISOTests: TestCase() {
             testNumber = "S2.11A",
             testCard = TestCards.MAG_2,
             operationType = OperationType.PURCHASE,
-            amount = BigDecimal(205.08),
+            amount = BigDecimal(211.08),
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
