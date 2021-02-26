@@ -500,7 +500,7 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
             testNumber = "M9.02B",
             testCard = MAG_2,
             operationType = AUTHORISATION_CONFIRMATION,
-            amount = BigDecimal(906.00),
+            amount = BigDecimal(90.20),
             description = "Manual Confirmation M9.02A",
             cardSlotType = MANUAL,
             parentGuid = guidM902A
@@ -633,18 +633,18 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
 
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "M9.03E",
-//            testCard = MAG_1,
-//            operationType = REFUND,
-//            amount = BigDecimal(902.00),
-//            description = "Refund 9.03B",
-//            cardSlotType = MAGNETIC_STRIPE,
-//            parentGuid = guidM903B
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M9.03E",
+            testCard = MAG_1,
+            operationType = REFUND,
+            amount = BigDecimal(902.00),
+            description = "Refund 9.03B",
+            cardSlotType = MAGNETIC_STRIPE,
+            parentGuid = guidM903B
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //--------------------------------------------------------------
         val guidM906A = Utils.getGUID()
@@ -661,26 +661,13 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "M9.06B",
-            testCard = MAG_1,
-            operationType = AUTHORISATION_CONFIRMATION,
-            amount = BigDecimal(905.00),
-            currency = USD,
-            description = "Manual Confirmation M9.06A. Wrong Currency",
-            cardSlotType = MANUAL,
-            parentGuid = guidM906A
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "M9.06B",
             testCard = MAG_1,
             operationType = AUTHORISATION_CONFIRMATION,
-            amount = BigDecimal(905.00),
+            amount = BigDecimal(906.00),
             currency = USD,
             description = "Manual Confirmation M9.06A. Wrong Currency",
             cardSlotType = MANUAL,
@@ -923,6 +910,8 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        return
 
 //--------------------------------------------------------------
         val guidM1502A = Utils.getGUID()

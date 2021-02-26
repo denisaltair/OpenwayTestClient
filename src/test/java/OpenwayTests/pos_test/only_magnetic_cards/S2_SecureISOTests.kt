@@ -12,7 +12,7 @@ import java.math.BigDecimal
 class S2_SecureISOTests: TestCase() {
     //S2. Secure ISO, 3-DES encryption (Terminal 1 with MAC and without MAC)*
     @Test
-    fun testM1() {
+    fun testS2() {
         println("S2. Secure ISO, 3-DES encryption (with MAC")
 
         var testResult: TestResult

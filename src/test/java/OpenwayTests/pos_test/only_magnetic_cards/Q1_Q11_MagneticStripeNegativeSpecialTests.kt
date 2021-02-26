@@ -409,7 +409,7 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "Q6.02B",
             testCard = TestCards.MAG_2,
-            operationType = OperationType.AUTHORISATION,
+            operationType = OperationType.PURCHASE,
             amount = BigDecimal(602.10),
             description = "Repeat of Q6.02A",
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
