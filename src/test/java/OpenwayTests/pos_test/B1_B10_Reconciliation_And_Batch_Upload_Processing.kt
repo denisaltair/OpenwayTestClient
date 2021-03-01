@@ -10,6 +10,8 @@ import enums.TestCards.*
 import helpers.EmvCardsTesterHelper
 import helpers.MagneticCardsTesterHelper
 import junit.framework.TestCase
+import kz.multibank.cardposclient.entities.Currency
+import kz.multibank.cardposclient.entities.Currency.*
 import org.junit.Test
 import other.Utils
 import java.math.BigDecimal
@@ -17,8 +19,8 @@ import java.math.BigDecimal
 
 class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
     @Test
-    fun testB1_B3() {
-        println("B1 – B3. Online Normal Processing (Terminals 1, 2)")
+    fun testB1_B6() {
+        println("B1 – B6. Online Normal Processing (Terminals 1, 2)")
 
         var testResult: TestResult
         //----------------------------------------------------
@@ -450,6 +452,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             operationType = PURCHASE,
             amount = BigDecimal(304.06),
             cardHolderVerificationType = SIGNED,
+            currency = USD,
             description = "PURCHASE",
             cardSlotType = MAGNETIC_STRIPE
         )
@@ -473,7 +476,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             testCard = EMV_3,
             testNumber = "B4.03",
             operationType = REVERSAL,
-            amount = BigDecimal(101.06),
+            amount = BigDecimal(115.06),
             cardHolderVerificationType = ONLINE_PIN,
             description = "Universal Reversal",
             cardSlotType = ICC,
@@ -609,6 +612,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(414.06),
             cardHolderVerificationType = SIGNED,
             description = "Purchase",
+            currency = RUB,
             cardSlotType = MAGNETIC_STRIPE,
             guid = guidB414
         )
@@ -668,6 +672,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(421.06),
             cardHolderVerificationType = SIGNED,
             description = "Purchase",
+            currency = RUB,
             cardSlotType = MAGNETIC_STRIPE,
             guid = guidB421
         )
@@ -681,6 +686,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             operationType = REVERSAL,
             amount = BigDecimal(421.06),
             cardHolderVerificationType = SIGNED,
+            currency = RUB,
             description = "Universal Reversal B4.21",
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidB421
@@ -733,6 +739,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(414.06),
             cardHolderVerificationType = SIGNED,
             description = "Refund B4.14",
+            currency = RUB,
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidB414
         )
@@ -772,6 +779,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(601.06),
             cardHolderVerificationType = SIGNED,
             description = "Authorisation",
+            currency = RUB,
             cardSlotType = MAGNETIC_STRIPE,
             guid = guidB601
         )
@@ -782,10 +790,11 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
         val guidB604 = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "B6.04",
-            testCard = MAG_2,
+            testCard = MAG_6,
             operationType = PURCHASE,
-            amount = BigDecimal(601.06),
+            amount = BigDecimal(605.06),
             cardHolderVerificationType = ONLINE_PIN,
+            currency = RUB,
             description = "Magnetic Stripe Purchase PBT",
             cardSlotType = MAGNETIC_STRIPE,
             guid = guidB604
