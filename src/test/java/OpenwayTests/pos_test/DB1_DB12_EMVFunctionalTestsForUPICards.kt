@@ -587,7 +587,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             testNumber = "DB8.01B",
             testCard = EMV_13,
             operationType = REVERSAL,
-            amount = BigDecimal(802.82),
+            amount = BigDecimal(801.82),
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB801A",
             cardSlotType = MANUAL,
