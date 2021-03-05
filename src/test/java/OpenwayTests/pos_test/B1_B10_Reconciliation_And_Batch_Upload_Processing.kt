@@ -597,7 +597,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             amount = BigDecimal(413.06),
             cardHolderVerificationType = SIGNED,
             description = "Authorisation",
-            cardSlotType = MAGNETIC_STRIPE,
+            cardSlotType = ICC,
             guid = guidB413
         )
         println(testResult.resultMessage)

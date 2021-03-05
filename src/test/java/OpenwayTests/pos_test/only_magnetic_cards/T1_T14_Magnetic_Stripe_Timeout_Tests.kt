@@ -40,7 +40,7 @@ class T1_T14_Magnetic_Stripe_Timeout_Tests : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "T1.01A",
+            testNumber = "T1.01B",
             testCard = MAG_1,
             operationType = AUTHORISATION,
             amount = BigDecimal(101.03),
@@ -60,7 +60,6 @@ class T1_T14_Magnetic_Stripe_Timeout_Tests : TestCase() {
             operationType = AUTO_REVERSAL,
             amount = BigDecimal(101.03),
             description = "Automatic Reversal of T1.01A",
-            isRepeat = true,
             cardHolderVerificationType = ONLINE_PIN,
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidT101A
@@ -82,6 +81,7 @@ class T1_T14_Magnetic_Stripe_Timeout_Tests : TestCase() {
             testCard = MAG_7,
             operationType = PURCHASE,
             amount = BigDecimal(201.03),
+            currency = USD,
             description = "Network Timeout",
             cardSlotType = MAGNETIC_STRIPE
         )
