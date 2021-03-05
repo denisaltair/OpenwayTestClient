@@ -21,33 +21,33 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
         println("D25. Purchase with Cashback (Terminals 1)")
 
         var testResult: TestResult
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "DB25.01",
-//            testCard = EMV_3,
-//            operationType = PURCHASE_WITH_CASH_BACK,
-//            amount = BigDecimal(2501.54),
-//            cashBackAmount = BigDecimal(10),
-//            cardHolderVerificationType = SIGNED,
-//            description = "Purchase with cashback. Operation should be rejected by terminal. ",
-//            cardSlotType = ICC
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, UNKNOWN_ERROR)
-//
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "DB25.02",
-//            testCard = EMV_3,
-//            operationType = PURCHASE_WITH_CASH_BACK,
-//            amount = BigDecimal(2502.54),
-//            cashBackAmount = BigDecimal(10),
-//            cardHolderVerificationType = SIGNED,
-//            description = "Purchase with cashback. Operation should be rejected by terminal. ",
-//            cardSlotType = ICC
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, UNKNOWN_ERROR)
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "DB25.01",
+            testCard = EMV_3,
+            operationType = PURCHASE_WITH_CASH_BACK,
+            amount = BigDecimal(2501.54),
+            cashBackAmount = BigDecimal(10),
+            cardHolderVerificationType = SIGNED,
+            description = "Purchase with cashback. Operation should be rejected by terminal. ",
+            cardSlotType = ICC
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, UNKNOWN_ERROR)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "DB25.02",
+            testCard = EMV_3,
+            operationType = PURCHASE_WITH_CASH_BACK,
+            amount = BigDecimal(2502.54),
+            cashBackAmount = BigDecimal(10),
+            cardHolderVerificationType = SIGNED,
+            description = "Purchase with cashback. Operation should be rejected by terminal. ",
+            cardSlotType = ICC
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, UNKNOWN_ERROR)
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
