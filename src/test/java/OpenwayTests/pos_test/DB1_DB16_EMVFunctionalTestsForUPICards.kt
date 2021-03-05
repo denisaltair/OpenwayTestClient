@@ -17,7 +17,7 @@ import other.Utils
 import java.math.BigDecimal
 
 
-class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
+class DB1_DB16_EMVFunctionalTestsForUPICards : TestCase() {
     @Test
     fun testDB1() {
         println("DB1. On-Line Processing, On-Line PIN (Terminals 1, 2)")
@@ -366,7 +366,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             testNumber = "DB4.02B",
             testCard = EMV_13,
             operationType = REVERSAL,
-            amount = BigDecimal(401.20),
+            amount = BigDecimal(40.20),
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB4.02A",
             cardSlotType = ICC,
@@ -890,7 +890,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             operationType = RECONCILIATION,
-            testNumber = "DB16.06",
+            testNumber = "DB16.05",
             description = "Reconciliation"
         )
         println(testResult.resultMessage)
