@@ -577,7 +577,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Purchase Manual",
             cardSlotType = MANUAL,
-            guid=guidDB801A
+            guid=guidDB802A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
