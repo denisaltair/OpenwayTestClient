@@ -53,7 +53,7 @@ object EmvCardsTesterHelper {
             transMessage.testNumber=testNumber
 
 
-            if (cardHolderVerificationType==CardHolderVerificationType.ONLINE_PIN) {
+            if (cardHolderVerificationType==CardHolderVerificationType.ONLINE_PIN && operationType !in arrayOf(REVERSAL, AUTO_REVERSAL, REFUND,PURCHASE_RETURN) ) {
                 transMessage.pin= pin ?: testCard.pin
             }
             transMessage.cardExpiredDate=testCard.expiredDate

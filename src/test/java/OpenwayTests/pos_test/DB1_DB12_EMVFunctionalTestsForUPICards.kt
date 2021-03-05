@@ -39,8 +39,7 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = ONLINE_PIN,
             description = "Authorisation (For Terminal 1 only)",
             cardSlotType = ICC,
-            guid=guidDB101,
-            tid = Config.TESTS_TERMINAL_2
+            guid=guidDB101
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
@@ -352,12 +351,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB4.01B",
             testCard = EMV_13,
-            operationType = PURCHASE,
+            operationType = REVERSAL,
             amount = BigDecimal(401.82),
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB4.01A",
             cardSlotType = ICC,
-            guid=guidDB401A
+            parentGuid = guidDB401A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
@@ -366,12 +365,12 @@ class DB1_DB12_EMVFunctionalTestsForUPICards : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB4.02B",
             testCard = EMV_13,
-            operationType = PURCHASE,
+            operationType = REVERSAL,
             amount = BigDecimal(401.20),
             cardHolderVerificationType = SIGNED,
             description = "Universal Reversal DB4.02A",
             cardSlotType = ICC,
-            guid=guidDB402A
+            parentGuid = guidDB402A
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
