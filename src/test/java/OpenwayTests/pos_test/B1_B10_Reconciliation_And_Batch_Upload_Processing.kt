@@ -929,6 +929,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             operationType = PURCHASE,
             amount = BigDecimal(903.06),
             cardHolderVerificationType = ONLINE_PIN,
+            currency = RUB,
             description = "Magnetic Stripe Purchase PBT",
             cardSlotType = MAGNETIC_STRIPE,
             guid = guidB903A
@@ -943,6 +944,7 @@ class B1_B10_Reconciliation_And_Batch_Upload_Processing : TestCase() {
             operationType = REVERSAL,
             amount = BigDecimal(903.06),
             description = "Universal Reversal B9.03A",
+            currency = RUB,
             cardSlotType = MAGNETIC_STRIPE,
             parentGuid = guidB903A
         )
