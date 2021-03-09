@@ -466,7 +466,7 @@ class DB1_DB16_EMVFunctionalTestsForUPICards : TestCase() {
             description = "Unmatched Universal Reversal",
             cardSlotType = ICC,
             currency = USD,
-            parentGuid = guidDB702A
+            parentGuid = Config.WRONG_GUID
 
         )
         println(testResult.resultMessage)

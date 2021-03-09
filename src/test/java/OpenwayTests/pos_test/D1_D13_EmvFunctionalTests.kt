@@ -124,7 +124,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "D2.06",
             operationType = PURCHASE,
-            amount = BigDecimal(107.04),
+            amount = BigDecimal(206.04),
             cardHolderVerificationType = ONLINE_PIN,
             testCard = EMV_10,
             description = "Purchase Real Bad Pin 987654"
@@ -246,12 +246,13 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             testNumber = "D3.06",
             operationType = REVERSAL, amount = BigDecimal(306.04),
             cardHolderVerificationType = SIGNED, tid = Config.TESTS_TERMINAL_1, currency = RUB,
-            description = "Unmatched Universal Reversal MAC Mandatory", parentGuid= guidD302A,testCard = EMV_3,
+            description = "Unmatched Universal Reversal MAC Mandatory",
+            parentGuid= Config.WRONG_GUID,testCard = EMV_3,
             isWithMac = true
         )
 
         println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, WRONG_AMOUNT)
+        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
 
 //-----------------D3.02B---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -277,10 +278,11 @@ class D1_D13_EmvFunctionalTests : TestCase() {
 
 ////-----------------D3.01B---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D3.02B",
+            testNumber = "D3.01B",
             operationType = AUTHORISATION_CONFIRMATION, amount = BigDecimal(301.04),
             cardHolderVerificationType = SIGNED, tid = Config.TESTS_TERMINAL_1, currency = RUB,
-            description = "D3.01B Card: EMV_3 Authorisation Confirmation D3.01A SBT", parentGuid= guidD301A,testCard = EMV_3
+            description = "D3.01B Card: EMV_3 Authorisation Confirmation D3.01A SBT",
+            parentGuid= guidD301A,testCard = EMV_3
         )
 
         println(testResult.resultMessage)
@@ -435,12 +437,13 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             testNumber = "D7.06",
             operationType = REVERSAL, amount = BigDecimal(706.04),
             cardHolderVerificationType = SIGNED,
-            description = "FALLBACK! Unmatched Universal Reversal", parentGuid =wrongGuid, testCard = EMV_3,
+            description = "FALLBACK! Unmatched Universal Reversal",
+            parentGuid =Config.WRONG_GUID, testCard = EMV_3,
             currency = USD
         )
 
         println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, WRONG_AMOUNT)
+        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
 
 
 //-----------------D7.02B---------------------------------------------
