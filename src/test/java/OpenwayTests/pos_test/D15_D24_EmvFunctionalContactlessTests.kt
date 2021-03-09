@@ -37,7 +37,6 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-        return
 //--------------------------------------------------------------
         var guidD1702A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
