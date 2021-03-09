@@ -29,7 +29,7 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
             testCard = EMV_10,
             operationType = AUTHORISATION,
             amount = BigDecimal(17.04),
-            cardHolderVerificationType = ONLINE_PIN,
+            cardHolderVerificationType = SIGNED,
             tid = Config.TESTS_TERMINAL_1,
             description = "Authorisation (For Terminal 1 only)",
             cardSlotType = RF,
@@ -97,19 +97,19 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D17.04",
-            testCard = EMV_10,
-            operationType = PURCHASE,
-            amount = BigDecimal(0.17),
-            cardHolderVerificationType = SIGNED,
-            tid = Config.TESTS_TERMINAL_1,
-            description = "Purchase",
-            cardSlotType = RF
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D17.04",
+//            testCard = EMV_10,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(0.17),
+//            cardHolderVerificationType = SIGNED,
+//            tid = Config.TESTS_TERMINAL_1,
+//            description = "Purchase",
+//            cardSlotType = RF
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -206,19 +206,19 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D18.04",
-            testCard = EMV_10,
-            operationType = PURCHASE,
-            amount = BigDecimal(0.18),
-            cardHolderVerificationType = ONLINE_PIN,
-            tid = Config.TESTS_TERMINAL_1,
-            description = "Purchase",
-            cardSlotType = RF
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D18.04",
+//            testCard = EMV_10,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(0.18),
+//            cardHolderVerificationType = ONLINE_PIN,
+//            tid = Config.TESTS_TERMINAL_1,
+//            description = "Purchase",
+//            cardSlotType = RF
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -314,19 +314,19 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D19.04",
-            testCard = EMV_10,
-            operationType = PURCHASE,
-            amount = BigDecimal(0.19),
-            cardHolderVerificationType = ONLINE_PIN,
-            tid = Config.TESTS_TERMINAL_1,
-            description = "Purchase",
-            cardSlotType = ICC
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D19.04",
+//            testCard = EMV_10,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(0.19),
+//            cardHolderVerificationType = ONLINE_PIN,
+//            tid = Config.TESTS_TERMINAL_1,
+//            description = "Purchase",
+//            cardSlotType = ICC
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -635,19 +635,19 @@ class D15_D24_EmvFunctionalContactlessTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//--------------------------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D24.04",
-            testCard = EMV_9,
-            operationType = PURCHASE,
-            amount = BigDecimal(0.24),
-            cardHolderVerificationType = ONLINE_PIN,
-            tid = Config.TESTS_TERMINAL_1,
-            description = "Purchase",
-            cardSlotType = ICC
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D24.04",
+//            testCard = EMV_9,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(0.24),
+//            cardHolderVerificationType = ONLINE_PIN,
+//            tid = Config.TESTS_TERMINAL_1,
+//            description = "Purchase",
+//            cardSlotType = ICC
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
