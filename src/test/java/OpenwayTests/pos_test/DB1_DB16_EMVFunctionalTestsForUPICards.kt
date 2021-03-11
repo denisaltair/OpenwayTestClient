@@ -466,7 +466,7 @@ class DB1_DB16_EMVFunctionalTestsForUPICards : TestCase() {
 
         )
         println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, WRONG_AMOUNT)
+        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
