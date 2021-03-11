@@ -3,13 +3,10 @@ package OpenwayTests.pos_test
 import entities.TestResult
 import enums.CardHolderVerificationType.*
 import enums.CardSlotType.*
-import enums.OpenwayResponseCode
 import enums.OpenwayResponseCode.*
-import enums.OperationType
 import enums.OperationType.*
 import enums.TestCards.*
 import helpers.EmvCardsTesterHelper
-import helpers.MagneticCardsTesterHelper
 import junit.framework.TestCase
 import kz.multibank.cardposclient.entities.Currency.*
 import org.junit.Test
@@ -466,7 +463,7 @@ class DB1_DB16_EMVFunctionalTestsForUPICards : TestCase() {
             description = "Unmatched Universal Reversal",
             cardSlotType = ICC,
             currency = USD,
-            parentGuid = Config.WRONG_GUID
+            parentGuid = Config.WRONG_GUID_USD
 
         )
         println(testResult.resultMessage)

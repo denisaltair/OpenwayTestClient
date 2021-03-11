@@ -9,7 +9,8 @@ object Config {
     const val TESTS_TERMINAL_4="11399994"
     const val TESTS_TERMINAL_5="11399995"
 
-    const val WRONG_GUID="ca0c55de-f9fd-4135-99d7-e05c458af369"
+    const val WRONG_GUID_RUB="ca0c55de-f9fd-4135-99d7-e05c458af369"
+    const val WRONG_GUID_USD="ee7a70e8-ab2d-4a08-8335-bf2bbb0e5e4f"
 
 
     const val POS_N5_IP="192.168.1.105"

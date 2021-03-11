@@ -3,12 +3,10 @@ package OpenwayTests.pos_test
 import entities.TestResult
 import enums.CardHolderVerificationType.*
 import enums.CardSlotType.*
-import enums.OpenwayResponseCode
 import enums.OpenwayResponseCode.*
 import enums.OperationType.*
 import enums.TestCards.*
 import helpers.EmvCardsTesterHelper
-import helpers.MagneticCardsTesterHelper
 import junit.framework.TestCase
 import kz.multibank.cardposclient.entities.Currency.*
 import org.junit.Test
@@ -248,7 +246,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             operationType = REVERSAL, amount = BigDecimal(306.04),
             cardHolderVerificationType = SIGNED, tid = Config.TESTS_TERMINAL_1, currency = RUB,
             description = "Unmatched Universal Reversal MAC Mandatory",
-            parentGuid= Config.WRONG_GUID,testCard = EMV_3,
+            parentGuid= Config.WRONG_GUID_RUB,testCard = EMV_3,
             isWithMac = true
         )
 
@@ -379,7 +377,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
 
         var testResult: TestResult
 //===================================================================
-        val wrongGuid=Config.WRONG_GUID
+        val wrongGuid=Config.WRONG_GUID_RUB
 //---------------------------------------------------------------------
         EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION)
 //-----------------D7.01A---------------------------------------------
@@ -439,7 +437,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             operationType = REVERSAL, amount = BigDecimal(706.04),
             cardHolderVerificationType = SIGNED,
             description = "FALLBACK! Unmatched Universal Reversal",
-            parentGuid =Config.WRONG_GUID, testCard = EMV_3,
+            parentGuid =Config.WRONG_GUID_RUB, testCard = EMV_3,
             currency = USD
         )
 
