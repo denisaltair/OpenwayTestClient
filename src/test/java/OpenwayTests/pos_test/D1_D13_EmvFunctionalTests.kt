@@ -114,6 +114,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             amount = BigDecimal(Config.MAX_AMOUNT_VALUE),
             cardHolderVerificationType = OFFLINE_PIN,
             testCard = EMV_9,
+
             description = "Purchase Offline PIN 2114"
         )
 
@@ -125,7 +126,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             testNumber = "D2.06",
             operationType = PURCHASE,
             amount = BigDecimal(206.04),
-            cardHolderVerificationType = ONLINE_PIN,
+            cardHolderVerificationType = OFFLINE_PIN,
             testCard = EMV_10,
             description = "Purchase Real Bad Pin 987654"
         )
@@ -138,7 +139,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             testNumber = "D2.07",
             operationType = PURCHASE,
             amount = BigDecimal(207.04),
-            cardHolderVerificationType = ONLINE_PIN,
+            cardHolderVerificationType = OFFLINE_PIN,
             testCard = EMV_10,
             description = "Purchase, Good PIN 3706 OFFLINE PIN"
         )
@@ -461,7 +462,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
 //-----------------D7.03B---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "D7.03B",
-            operationType = REVERSAL, amount = BigDecimal(70.03),
+            operationType = REVERSAL, amount = BigDecimal(70.30),
             cardHolderVerificationType = SIGNED,
             description = "FALLBACK! Universal Reversal D7.03B", parentGuid =guidD703A, testCard = EMV_3
         )
