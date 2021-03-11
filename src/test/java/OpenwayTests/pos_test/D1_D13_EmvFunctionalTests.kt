@@ -437,7 +437,7 @@ class D1_D13_EmvFunctionalTests : TestCase() {
             operationType = REVERSAL, amount = BigDecimal(706.04),
             cardHolderVerificationType = SIGNED,
             description = "FALLBACK! Unmatched Universal Reversal",
-            parentGuid =Config.WRONG_GUID_RUB, testCard = EMV_3,
+            parentGuid =Config.WRONG_GUID_USD, testCard = EMV_3,
             currency = USD
         )
 

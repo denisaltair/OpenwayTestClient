@@ -245,12 +245,11 @@ class DB1_DB16_EMVFunctionalTestsForUPICards : TestCase() {
             cardHolderVerificationType = SIGNED,
             description = "Unmatched Universal Reversal, MAC Mandatory (For Terminal 2 only)",
             cardSlotType = ICC,
-            parentGuid = guidDB301A,
-            tid = Config.TESTS_TERMINAL_2,
+            parentGuid = Config.WRONG_GUID_RUB,
             isWithMac = true
         )
         println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, WRONG_AMOUNT)
+        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
