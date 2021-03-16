@@ -909,9 +909,6 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
-        return
-
 //--------------------------------------------------------------
         val guidM1502A = Utils.getGUID()
         testResult = EmvCardsTesterHelper.sendRequest(
