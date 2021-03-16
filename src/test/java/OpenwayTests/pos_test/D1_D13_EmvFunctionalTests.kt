@@ -456,7 +456,6 @@ class D1_D13_EmvFunctionalTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-
 //-----------------D7.03B---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "D7.03B",
@@ -467,7 +466,6 @@ class D1_D13_EmvFunctionalTests : TestCase() {
 
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
 
 //-----------------D7.04B---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(

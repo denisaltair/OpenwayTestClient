@@ -34,7 +34,6 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "M1.02",
