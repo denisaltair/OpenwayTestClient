@@ -41,7 +41,7 @@ object EmvCardsTesterHelper {
             transMessage.cardSlotType=cardSlotType
             transMessage.guid=guid
             transMessage.parentGuid=parentGuid
-            lastDescription="$testNumber $description "+testCard.toString()+" "+cardSlotType.toString()+ " "+ testCard.pin
+            lastDescription="$description "+testCard.toString()+" "+cardSlotType.toString()+ " "+ testCard.pin
             transMessage.description= lastDescription
             transMessage.cashBackAmount=cashBackAmount
             transMessage.isWithMac=isWithMac
@@ -63,7 +63,7 @@ object EmvCardsTesterHelper {
 
             return TestResult(
                 responseCode, responseTransMessage.rrn?:"", responseTransMessage.authCode?:"",
-                resultMessage =  "$lastDescription rrn:${responseTransMessage.rrn} $responseCode")
+                resultMessage =  "$testNumber ${responseTransMessage.rrn} $lastDescription $responseCode")
 
         }catch (e:Exception) {
 
