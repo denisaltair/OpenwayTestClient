@@ -119,18 +119,18 @@ class D1_D13_EmvFunctionalTests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
-//-----------------D2.06---------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D2.06",
-            operationType = PURCHASE,
-            amount = BigDecimal(206.04),
-            cardHolderVerificationType = OFFLINE_PIN,
-            testCard = EMV_10,
-            description = "Purchase Real Bad Pin 987654"
-        )
-
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, WRONG_PIN)
+////-----------------D2.06---------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D2.06",
+//            operationType = PURCHASE,
+//            amount = BigDecimal(206.04),
+//            cardHolderVerificationType = OFFLINE_PIN,
+//            testCard = EMV_10,
+//            description = "Purchase Real Bad Pin 987654"
+//        )
+//
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, WRONG_PIN)
 
 //-----------------D2.07---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -146,17 +146,17 @@ class D1_D13_EmvFunctionalTests : TestCase() {
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 
-//-----------------D2.08---------------------------------------------
-        testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "D2.08",
-            operationType = PURCHASE,
-            amount = BigDecimal(208.04),
-            cardHolderVerificationType = ONLINE_PIN,
-            testCard = EMV_9,
-            description = "Purchase, Real Bad PIN (PIN = 0123456) OFFLINE PIN"
-        )
-        println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, WRONG_PIN)
+////-----------------D2.08---------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "D2.08",
+//            operationType = PURCHASE,
+//            amount = BigDecimal(208.04),
+//            cardHolderVerificationType = ONLINE_PIN,
+//            testCard = EMV_9,
+//            description = "Purchase, Real Bad PIN (PIN = 0123456) OFFLINE PIN"
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, WRONG_PIN)
 
 //-----------------D2.09---------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(

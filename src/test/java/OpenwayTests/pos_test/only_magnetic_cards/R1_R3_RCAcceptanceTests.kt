@@ -5,7 +5,6 @@ import enums.*
 import helpers.EmvCardsTesterHelper
 import junit.framework.TestCase
 import org.junit.Test
-import other.Utils
 import java.math.BigDecimal
 import enums.OpenwayResponseCode.Companion as OpenwayResponseCode1
 

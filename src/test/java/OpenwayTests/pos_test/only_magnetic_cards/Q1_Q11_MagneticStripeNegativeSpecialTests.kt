@@ -465,46 +465,46 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase() {
     @Test
     fun testQ8() {
         var testResult: TestResult
-////--------------------------------------------------------------
-//        val guidQ801A = Utils.getGUID()
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "Q8.01A",
-//            testCard = TestCards.MAG_1,
-//            operationType = OperationType.AUTHORISATION,
-//            amount = BigDecimal(801.10),
-//            description = "Authorisation, Unmatched MTID ",
-//            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-//            guid = guidQ801A
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_RESPONSE_OPERATION)
-//
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "Q8.01B",
-//            testCard = TestCards.MAG_1,
-//            operationType = OperationType.AUTHORISATION,
-//            amount = BigDecimal(801.10),
-//            description = "Repeat of Q8.01A",
-//            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-//            parentGuid = guidQ801A,
-//            isRepeat = true
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_RESPONSE_OPERATION)
-//
-////--------------------------------------------------------------
-//        testResult = EmvCardsTesterHelper.sendRequest(
-//            testNumber = "Q8.01C",
-//            testCard = TestCards.MAG_1,
-//            operationType = OperationType.AUTO_REVERSAL,
-//            amount = BigDecimal(801.10),
-//            description = "Automatic Reversal of Q8.01A",
-//            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-//            parentGuid = guidQ801A
-//        )
-//        println(testResult.resultMessage)
-//        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)
+//--------------------------------------------------------------
+        val guidQ801A = Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "Q8.01A",
+            testCard = TestCards.MAG_1,
+            operationType = OperationType.AUTHORISATION,
+            amount = BigDecimal(801.10),
+            description = "Authorisation, Unmatched MTID ",
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
+            guid = guidQ801A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_RESPONSE_OPERATION)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "Q8.01B",
+            testCard = TestCards.MAG_1,
+            operationType = OperationType.AUTHORISATION,
+            amount = BigDecimal(801.10),
+            description = "Repeat of Q8.01A",
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
+            parentGuid = guidQ801A,
+            isRepeat = true
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_RESPONSE_OPERATION)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "Q8.01C",
+            testCard = TestCards.MAG_1,
+            operationType = OperationType.AUTO_REVERSAL,
+            amount = BigDecimal(801.10),
+            description = "Automatic Reversal of Q8.01A",
+            cardSlotType = CardSlotType.MAGNETIC_STRIPE,
+            parentGuid = guidQ801A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.ACCEPTED)
 
 //--------------------------------------------------------------
         val guidQ802A = Utils.getGUID()
@@ -519,7 +519,6 @@ class Q1_Q11_MagneticStripeNegativeSpecialTests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, OpenwayResponseCode.WRONG_MESSAGE_FORMAT)
-        return
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
