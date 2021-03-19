@@ -76,7 +76,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
             testNumber = "DB25.04",
             testCard = EMV_10,
             operationType = PURCHASE_WITH_CASH_BACK,
-            amount = BigDecimal(2504.54),
+            amount = BigDecimal(2504.53),
             cashBackAmount = BigDecimal(10),
             cardHolderVerificationType = SIGNED,
             description = "Purchase with cashback.",
