@@ -60,7 +60,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB25.03",
             testCard = EMV_10,
-            operationType = PURCHASE,
+            operationType = PURCHASE_WITH_CASH_BACK,
             amount = BigDecimal(2503.54),
             cashBackAmount = BigDecimal(10),
             cardHolderVerificationType = SIGNED,
@@ -75,7 +75,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB25.04",
             testCard = EMV_10,
-            operationType = PURCHASE,
+            operationType = PURCHASE_WITH_CASH_BACK,
             amount = BigDecimal(2504.54),
             cashBackAmount = BigDecimal(10),
             cardHolderVerificationType = SIGNED,
