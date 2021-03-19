@@ -81,7 +81,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
         )
         println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+        assertEquals(testResult.openwayResponseCode, APPROVED_FOR_PARTIAL_AMOUNT)
 
 //----------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
