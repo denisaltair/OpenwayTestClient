@@ -21,6 +21,10 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
         println("D25. Purchase with Cashback (Terminals 1)")
 
         var testResult: TestResult
+
+//----------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION,description = "Reconciliation")
+
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "DB25.01",
