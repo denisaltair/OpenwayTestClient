@@ -206,7 +206,6 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
-
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
             testNumber = "M3.02",
@@ -268,6 +267,121 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, ACCEPTED)
     }
+
+    //M3. Manual Entry Transactions (Terminal 4) MOTO
+    @Test
+    fun testM3_MOTO() {
+        println("M3. Manual Entry Transactions (Terminals 1, 2, 4)")
+
+        var testResult: TestResult
+//--------------------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.01",
+            testCard = MAG_2,
+            operationType = PURCHASE,
+            amount = BigDecimal(301.00),
+            description = "Purchase",
+            tid=Config.TESTS_TERMINAL_4,
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.02",
+            testCard = MAG_1,
+            operationType = PURCHASE,
+            amount = BigDecimal(302.00),
+            description = "Purchase",
+            tid=Config.TESTS_TERMINAL_4,
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.03",
+            testCard = MAG_1,
+            operationType = PURCHASE,
+            amount = BigDecimal(303.00),
+            description = "Purchase",
+            tid=Config.TESTS_TERMINAL_4,
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        //--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.04",
+            testCard = MAG_1,
+            operationType = PURCHASE,
+            amount = BigDecimal(304.00),
+            description = "Purchase",
+            tid=Config.TESTS_TERMINAL_4,
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        //--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.05",
+            testCard = MAG_2,
+            operationType = PURCHASE,
+            amount = BigDecimal(Config.MIN_AMOUNT_VALUE),
+            description = "Purchase",
+            tid=Config.TESTS_TERMINAL_4,
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+        //--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.06",
+            testCard = MAG_1,
+            operationType = PURCHASE,
+            amount = BigDecimal(Config.MAX_AMOUNT_VALUE),
+            description = "Purchase",
+            tid=Config.TESTS_TERMINAL_4,
+            currency = USD,
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//---------------SUM 404.06 FOR BATCH UPLOAD----------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M3.07",
+            testCard = MAG_1,
+            operationType = PURCHASE,
+            amount = BigDecimal(404.06),
+            description = "Manual No Such Card",
+            cardSlotType = MANUAL
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, NO_SUCH_CARD)
+
+//----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "M3.08",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
+
+
+    }
+
+
 
     //M8. Retail Refund (Terminals 1, 3, 4)
     @Test
@@ -348,11 +462,11 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "M8.02B",
+            testNumber = "M8.03B",
             testCard = MAG_1,
             operationType = REFUND,
             amount = BigDecimal(80.3),
-            description = "Refund M8.02A",
+            description = "Refund M8.03A",
             cardSlotType = MAGNETIC_STRIPE,
             cardHolderVerificationType = SIGNED,
             parentGuid = guidM803A
@@ -443,6 +557,95 @@ class M1_V1_Magnetic_Stripe_Functional_Tests : TestCase() {
         )
         println(testResult.resultMessage)
         assertEquals(testResult.openwayResponseCode, WRONG_AMOUNT)
+    }
+
+    //M8. Retail Refund (Terminal 4  MOTO)
+    @Test
+    fun testM8_MOTO() {
+        println("M8. Retail Refund (Terminals 1, 3, 4)")
+        var testResult: TestResult
+
+
+//----------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            description = "Reconciliation"
+        )
+
+//--------------------------------------------------------------
+        val guidM803A = Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M8.03A",
+            testCard = MAG_1,
+            operationType = PURCHASE,
+            amount = BigDecimal(803.00),
+            description = "Manual",
+            cardSlotType = MANUAL,
+            guid = guidM803A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M8.03B",
+            testCard = MAG_1,
+            operationType = REFUND,
+            amount = BigDecimal(80.3),
+            description = "Refund M8.03A",
+            cardSlotType = MANUAL,
+            parentGuid = guidM803A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M8.03C",
+            testCard = MAG_1,
+            operationType = REFUND,
+            amount = BigDecimal(80.3),
+            description = "Refund M8.03A",
+            cardSlotType = MANUAL,
+            parentGuid = guidM803A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "M8.03D",
+            testCard = MAG_1,
+            operationType = REFUND,
+            amount = BigDecimal(8030),
+            description = "Refund M8.03A, Wrong Amount",
+            cardSlotType = MANUAL,
+            parentGuid = guidM803A
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, WRONG_AMOUNT)
+//
+////--------------------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            testNumber = "M8.04",
+//            testCard = MAG_1,
+//            operationType = PURCHASE,
+//            amount = BigDecimal(404.06),
+//            description = "Manual No Such Card",
+//            cardSlotType = MANUAL
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, NO_SUCH_CARD)
+//
+////----------------------------------------------------
+//        testResult = EmvCardsTesterHelper.sendRequest(
+//            operationType = RECONCILIATION,
+//            testNumber = "M9.05",
+//            description = "Reconciliation"
+//        )
+//        println(testResult.resultMessage)
+//        assertEquals(testResult.openwayResponseCode, RECONCILE_ERROR_AUTH_NOT_FOUND)
+
     }
 
     //M9. Retail Authorisation and Authorisation Confirmation (Terminals 1, 3)

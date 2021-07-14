@@ -27,7 +27,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "DB25.01",
+            testNumber = "D25.01",
             testCard = EMV_3,
             operationType = PURCHASE_WITH_CASH_BACK,
             amount = BigDecimal(2501.54),
@@ -43,7 +43,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "DB25.02",
+            testNumber = "D25.02",
             testCard = EMV_3,
             operationType = PURCHASE_WITH_CASH_BACK,
             amount = BigDecimal(2502.54),
@@ -58,7 +58,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "DB25.03",
+            testNumber = "D25.03",
             testCard = EMV_10,
             operationType = PURCHASE_WITH_CASH_BACK,
             amount = BigDecimal(2503.54),
@@ -73,7 +73,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
 //--------------------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
-            testNumber = "DB25.04",
+            testNumber = "D25.04",
             testCard = EMV_10,
             operationType = PURCHASE_WITH_CASH_BACK,
             amount = BigDecimal(2504.54),
@@ -85,7 +85,7 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
         )
         println(testResult.resultMessage)
-        assertEquals(testResult.openwayResponseCode, APPROVED_FOR_PARTIAL_AMOUNT)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
 
 //----------------------------------------------------
         testResult = EmvCardsTesterHelper.sendRequest(
@@ -98,4 +98,94 @@ class D25_I17_PurchaseWithCashBack : TestCase() {
 
     }
 
-}
+    @Test
+    fun testD26() {
+        println("D26. Purchase with Cashback (Terminals 1)")
+
+        var testResult: TestResult
+
+//----------------------------------------------------
+        EmvCardsTesterHelper.sendRequest(operationType = RECONCILIATION, description = "Reconciliation")
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "D26.01",
+            testCard = EMV_10,
+            operationType = PURCHASE_WITH_CASH_BACK,
+            amount = BigDecimal(2601.54),
+            cashBackAmount = BigDecimal(1.54),
+            cardHolderVerificationType = SIGNED,
+            description = "",
+            cardSlotType = ICC,
+            currency = RUB
+
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "D26.02",
+            testCard = EMV_10,
+            operationType = PURCHASE_WITH_CASH_BACK,
+            amount = BigDecimal(2602.54),
+            cashBackAmount = BigDecimal(2.54),
+            cardHolderVerificationType = SIGNED,
+            description = "",
+            cardSlotType = ICC,
+            currency = RUB
+
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, PURCHASE_APPROVAL_ONLY)
+
+//--------------------------------------------------------------
+        val guidD2603A=Utils.getGUID()
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "D26.03A",
+            testCard = EMV_10,
+            operationType = PURCHASE_WITH_CASH_BACK,
+            amount = BigDecimal(2603.54),
+            cashBackAmount = BigDecimal(3.54),
+            cardHolderVerificationType = SIGNED,
+            description = "",
+            cardSlotType = ICC,
+            currency = RUB,
+            guid = guidD2603A
+
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, PURCHASE_APPROVAL_ONLY)
+
+//--------------------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            testNumber = "D26.03B",
+            testCard = EMV_10,
+            operationType = REVERSAL,
+            amount = BigDecimal(2600),
+            cashBackAmount = BigDecimal(0),
+            cardHolderVerificationType = SIGNED,
+            description = "",
+            cardSlotType = ICC,
+            currency = RUB,
+            parentGuid= guidD2603A
+
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+//----------------------------------------------------
+        testResult = EmvCardsTesterHelper.sendRequest(
+            operationType = RECONCILIATION,
+            testNumber = "D26.04",
+            description = "Reconciliation"
+        )
+        println(testResult.resultMessage)
+        assertEquals(testResult.openwayResponseCode, ACCEPTED)
+
+
+    }
+
+
+
+    }

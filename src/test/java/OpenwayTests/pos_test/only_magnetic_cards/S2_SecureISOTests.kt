@@ -25,8 +25,7 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
-            isWithSecureIso = false
+            isWithSecureIso = true
 
         )
         println(testResult.resultMessage)
@@ -40,7 +39,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -56,7 +54,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -72,7 +69,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -88,7 +84,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -105,7 +100,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -121,7 +115,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -137,7 +130,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -153,7 +145,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -169,7 +160,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true
 
         )
@@ -186,7 +176,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true,
             guid=guidS211A
         )
@@ -202,7 +191,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase Repeat S2.11A",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true,
             isRepeat = true,
             guid=guidS211A
@@ -219,7 +207,6 @@ class S2_SecureISOTests: TestCase() {
             description = "Purchase Repeat S2.11A",
             cardHolderVerificationType = CardHolderVerificationType.SIGNED,
             cardSlotType = CardSlotType.MAGNETIC_STRIPE,
-            isWithMac = true,
             isWithSecureIso = true,
             parentGuid =guidS211A
         )
